@@ -1,0 +1,25 @@
+import assert from "node:assert/strict";
+import {readFile} from "node:fs/promises";
+import vm from "node:vm";
+const html=await readFile(new URL("drivesense/traffic-test.html",import.meta.url),"utf8");
+assert.ok(html.includes("TEST PATTERN"));assert.ok(html.includes("不显示识别结果"));
+const bytes=new Array(320*240).fill(""),elems=new Map();
+const node=id=>{if(!elems.has(id))elems.set(id,{value:({color:"red",number:"28",digits:"on"})[id]||"",addEventListener(){}});return elems.get(id);};
+let fill="",circle;
+const ctx={set fillStyle(v){fill=v;},get fillStyle(){return fill;},fillRect(x,y,w,h){for(let yy=y;yy<y+h;yy++)for(let xx=x;xx<x+w;xx++)bytes[yy*320+xx]=fill;},beginPath(){},arc(x,y,r){circle=[x,y,r];},fill(){const[x,y,r]=circle;for(let yy=0;yy<240;yy++)for(let xx=0;xx<320;xx++)if((xx-x)**2+(yy-y)**2<=r*r)bytes[yy*320+xx]=fill;},fillText(){}};
+node("pattern").getContext=()=>ctx;
+const env={window:{},document:{getElementById:node},addEventListener(){},setInterval(){},clearInterval(){},Math,Number};
+vm.runInNewContext(html.match(/<script>([\s\S]*?)<\/script>/)[1],env);
+const api=env.window.TrafficTestPattern,pixel=(x,y)=>bytes[y*320+x];
+assert.equal(pixel(72,46),"rgb(245,24,20)");assert.equal(pixel(50,20),"rgb(12,16,20)");
+assert.equal(pixel(0,0),"rgb(80,86,92)");
+// Independently inspect segment centers in reference digits 2 and 8.
+const centers=[[7,1],[13,7],[13,20],[7,27],[1,20],[1,7],[7,14]];
+const segmentBits=x=>centers.map(([dx,dy])=>pixel(x+dx,32+dy)==="rgb(245,24,20)"?1:0);
+assert.deepEqual(segmentBits(108),[1,1,0,1,1,0,1]);
+assert.deepEqual(segmentBits(130),[1,1,1,1,1,1,1]);
+node("number").value="0";api.draw();assert.deepEqual(segmentBits(108),[0,0,0,0,0,0,0]);assert.deepEqual(segmentBits(130),[1,1,1,1,1,1,0]);
+node("digits").value="off";api.draw();assert.deepEqual(segmentBits(130),[0,0,0,0,0,0,0]);
+node("color").value="off";api.draw();assert.equal(pixel(72,46),"rgb(18,22,24)");
+node("color").value="green";api.draw();assert.equal(pixel(72,46),"rgb(20,235,45)");
+console.log("PASS optical test source: fixture RGB/circle/housing/geometry, seven-segment 28 and single 0, disabled digits and off/green lamp; explicitly TEST PATTERN");

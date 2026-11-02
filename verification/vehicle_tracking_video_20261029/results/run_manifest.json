@@ -1,0 +1,257 @@
+{
+  "source": "C:\\Users\\twofl\\xwechat_files\\wxid_e0zynr4vepxa22_8545\\msg\\video\\2026-10\\0d325868f3e3e5c37d0c592783d2852c.mp4",
+  "source_sha256": "5a66062f1f4bd570cacad68bc8d9421b9f0dd9c93f8ab7cc395c2e7a69a46fdb",
+  "ground_truth": false,
+  "builds": {
+    "baseline": {
+      "sources": {
+        "D:\\project\\FPGA_PYNQ_Integrated\\lcd_english_20261028\\verification\\vehicle_tracking_video_20261029\\baseline\\obstacle_motion_core.c": "29720d1c176affa65ffcef952d22e58485ea071d38f0962edcbb2f85229f8f9f",
+        "D:\\project\\FPGA_PYNQ_Integrated\\lcd_english_20261028\\verification\\vehicle_tracking_video_20261029\\baseline\\obstacle_motion_core.h": "35d4dc9a46984f613c1dadb6553016b56f85c9e497b985bdd86bca3408c8c399",
+        "D:\\project\\FPGA_PYNQ_Integrated\\lcd_english_20261028\\verification\\motion_precision_20261029\\tests\\replay_capture.c": "0e4b35f284f270352862a137d36918eafa25c4a205a3ee3f69b1a729e3dd4a91"
+      },
+      "exe_sha256": "dc56e1a23987c2c277a8751516a1defc2579cf83494c6c479cdb14284459f0c5",
+      "command": [
+        "D:\\FPGA\\2026.1\\tps\\mingw\\10.0.0\\win64.o\\nt\\bin\\gcc.exe",
+        "-std=c11",
+        "-O2",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-I",
+        "D:\\project\\FPGA_PYNQ_Integrated\\lcd_english_20261028\\verification\\vehicle_tracking_video_20261029\\baseline",
+        "D:\\project\\FPGA_PYNQ_Integrated\\lcd_english_20261028\\verification\\vehicle_tracking_video_20261029\\baseline\\obstacle_motion_core.c",
+        "D:\\project\\FPGA_PYNQ_Integrated\\lcd_english_20261028\\verification\\motion_precision_20261029\\tests\\replay_capture.c",
+        "-o",
+        "D:\\project\\FPGA_PYNQ_Integrated\\lcd_english_20261028\\verification\\vehicle_tracking_video_20261029\\build\\baseline.exe"
+      ]
+    },
+    "candidate": {
+      "sources": {
+        "D:\\project\\FPGA_PYNQ_Integrated\\lcd_english_20261028\\firmware\\src\\obstacle_motion_core.c": "22703779070ab92bafdec7871c20c735594fac95b7311dc44b1df0e718e784bd",
+        "D:\\project\\FPGA_PYNQ_Integrated\\lcd_english_20261028\\firmware\\src\\obstacle_motion_core.h": "8f438d7ed8e8cd0fb3cc8d6dea12ef98c7d8a51db7cecb9a23ea389f4547d388",
+        "D:\\project\\FPGA_PYNQ_Integrated\\lcd_english_20261028\\verification\\motion_precision_20261029\\tests\\replay_capture.c": "0e4b35f284f270352862a137d36918eafa25c4a205a3ee3f69b1a729e3dd4a91"
+      },
+      "exe_sha256": "6502729438360f315445dd673b3a0105e0ee6f7978a04ec8c2fee17637f40863",
+      "command": [
+        "D:\\FPGA\\2026.1\\tps\\mingw\\10.0.0\\win64.o\\nt\\bin\\gcc.exe",
+        "-std=c11",
+        "-O2",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-I",
+        "D:\\project\\FPGA_PYNQ_Integrated\\lcd_english_20261028\\firmware\\src",
+        "D:\\project\\FPGA_PYNQ_Integrated\\lcd_english_20261028\\firmware\\src\\obstacle_motion_core.c",
+        "D:\\project\\FPGA_PYNQ_Integrated\\lcd_english_20261028\\verification\\motion_precision_20261029\\tests\\replay_capture.c",
+        "-o",
+        "D:\\project\\FPGA_PYNQ_Integrated\\lcd_english_20261028\\verification\\vehicle_tracking_video_20261029\\build\\candidate.exe"
+      ]
+    }
+  },
+  "runs": [
+    {
+      "variant": "baseline",
+      "fps": 5,
+      "clip": "full",
+      "frames": 123,
+      "status_histogram": {
+        "1": 3,
+        "0": 120
+      },
+      "frames_with_boxes": 94,
+      "total_boxes": 329,
+      "max_boxes": 6,
+      "unique_output_ids": 32,
+      "host_wall_seconds": 0.1871817999999621,
+      "host_wall_ms_per_frame": 1.5218032520322122,
+      "caveat": "No GT: counts are not accuracy or ID-switch measurements. Host wall includes IO/JSON, not ARM or end-to-end latency. Only stable clip is used for primary comparison; full/late UI contain controls, pause and scaling changes."
+    },
+    {
+      "variant": "candidate",
+      "fps": 5,
+      "clip": "full",
+      "frames": 123,
+      "status_histogram": {
+        "1": 3,
+        "0": 120
+      },
+      "frames_with_boxes": 95,
+      "total_boxes": 392,
+      "max_boxes": 7,
+      "unique_output_ids": 31,
+      "host_wall_seconds": 0.1908722999942256,
+      "host_wall_ms_per_frame": 1.5518073170262245,
+      "caveat": "No GT: counts are not accuracy or ID-switch measurements. Host wall includes IO/JSON, not ARM or end-to-end latency. Only stable clip is used for primary comparison; full/late UI contain controls, pause and scaling changes."
+    },
+    {
+      "variant": "baseline",
+      "fps": 5,
+      "clip": "stable",
+      "frames": 48,
+      "status_histogram": {
+        "1": 3,
+        "0": 45
+      },
+      "frames_with_boxes": 35,
+      "total_boxes": 122,
+      "max_boxes": 6,
+      "unique_output_ids": 16,
+      "host_wall_seconds": 0.08087260000320384,
+      "host_wall_ms_per_frame": 1.68484583340008,
+      "caveat": "No GT: counts are not accuracy or ID-switch measurements. Host wall includes IO/JSON, not ARM or end-to-end latency. Only stable clip is used for primary comparison; full/late UI contain controls, pause and scaling changes."
+    },
+    {
+      "variant": "candidate",
+      "fps": 5,
+      "clip": "stable",
+      "frames": 48,
+      "status_histogram": {
+        "1": 3,
+        "0": 45
+      },
+      "frames_with_boxes": 34,
+      "total_boxes": 131,
+      "max_boxes": 7,
+      "unique_output_ids": 13,
+      "host_wall_seconds": 0.08215520000521792,
+      "host_wall_ms_per_frame": 1.7115666667753733,
+      "caveat": "No GT: counts are not accuracy or ID-switch measurements. Host wall includes IO/JSON, not ARM or end-to-end latency. Only stable clip is used for primary comparison; full/late UI contain controls, pause and scaling changes."
+    },
+    {
+      "variant": "baseline",
+      "fps": 5,
+      "clip": "late_ui",
+      "frames": 43,
+      "status_histogram": {
+        "1": 3,
+        "0": 40
+      },
+      "frames_with_boxes": 35,
+      "total_boxes": 90,
+      "max_boxes": 5,
+      "unique_output_ids": 12,
+      "host_wall_seconds": 0.07573889999912353,
+      "host_wall_ms_per_frame": 1.7613697674214774,
+      "caveat": "No GT: counts are not accuracy or ID-switch measurements. Host wall includes IO/JSON, not ARM or end-to-end latency. Only stable clip is used for primary comparison; full/late UI contain controls, pause and scaling changes."
+    },
+    {
+      "variant": "candidate",
+      "fps": 5,
+      "clip": "late_ui",
+      "frames": 43,
+      "status_histogram": {
+        "1": 3,
+        "0": 40
+      },
+      "frames_with_boxes": 38,
+      "total_boxes": 117,
+      "max_boxes": 5,
+      "unique_output_ids": 12,
+      "host_wall_seconds": 0.07704939999530325,
+      "host_wall_ms_per_frame": 1.7918465115186801,
+      "caveat": "No GT: counts are not accuracy or ID-switch measurements. Host wall includes IO/JSON, not ARM or end-to-end latency. Only stable clip is used for primary comparison; full/late UI contain controls, pause and scaling changes."
+    },
+    {
+      "variant": "baseline",
+      "fps": 10,
+      "clip": "full",
+      "frames": 247,
+      "status_histogram": {
+        "1": 3,
+        "0": 244
+      },
+      "frames_with_boxes": 182,
+      "total_boxes": 627,
+      "max_boxes": 7,
+      "unique_output_ids": 24,
+      "host_wall_seconds": 0.3803920999998809,
+      "host_wall_ms_per_frame": 1.5400489878537689,
+      "caveat": "No GT: counts are not accuracy or ID-switch measurements. Host wall includes IO/JSON, not ARM or end-to-end latency. Only stable clip is used for primary comparison; full/late UI contain controls, pause and scaling changes."
+    },
+    {
+      "variant": "candidate",
+      "fps": 10,
+      "clip": "full",
+      "frames": 247,
+      "status_histogram": {
+        "1": 3,
+        "0": 244
+      },
+      "frames_with_boxes": 182,
+      "total_boxes": 699,
+      "max_boxes": 7,
+      "unique_output_ids": 30,
+      "host_wall_seconds": 0.39861939999536844,
+      "host_wall_ms_per_frame": 1.613843724677605,
+      "caveat": "No GT: counts are not accuracy or ID-switch measurements. Host wall includes IO/JSON, not ARM or end-to-end latency. Only stable clip is used for primary comparison; full/late UI contain controls, pause and scaling changes."
+    },
+    {
+      "variant": "baseline",
+      "fps": 10,
+      "clip": "stable",
+      "frames": 95,
+      "status_histogram": {
+        "1": 3,
+        "0": 92
+      },
+      "frames_with_boxes": 71,
+      "total_boxes": 210,
+      "max_boxes": 6,
+      "unique_output_ids": 11,
+      "host_wall_seconds": 0.1475155000007362,
+      "host_wall_ms_per_frame": 1.552794736849855,
+      "caveat": "No GT: counts are not accuracy or ID-switch measurements. Host wall includes IO/JSON, not ARM or end-to-end latency. Only stable clip is used for primary comparison; full/late UI contain controls, pause and scaling changes."
+    },
+    {
+      "variant": "candidate",
+      "fps": 10,
+      "clip": "stable",
+      "frames": 95,
+      "status_histogram": {
+        "1": 3,
+        "0": 92
+      },
+      "frames_with_boxes": 71,
+      "total_boxes": 233,
+      "max_boxes": 6,
+      "unique_output_ids": 13,
+      "host_wall_seconds": 0.14903179999964777,
+      "host_wall_ms_per_frame": 1.5687557894699766,
+      "caveat": "No GT: counts are not accuracy or ID-switch measurements. Host wall includes IO/JSON, not ARM or end-to-end latency. Only stable clip is used for primary comparison; full/late UI contain controls, pause and scaling changes."
+    },
+    {
+      "variant": "baseline",
+      "fps": 10,
+      "clip": "late_ui",
+      "frames": 87,
+      "status_histogram": {
+        "1": 3,
+        "0": 84
+      },
+      "frames_with_boxes": 79,
+      "total_boxes": 250,
+      "max_boxes": 6,
+      "unique_output_ids": 15,
+      "host_wall_seconds": 0.13904229999752715,
+      "host_wall_ms_per_frame": 1.5981873562934155,
+      "caveat": "No GT: counts are not accuracy or ID-switch measurements. Host wall includes IO/JSON, not ARM or end-to-end latency. Only stable clip is used for primary comparison; full/late UI contain controls, pause and scaling changes."
+    },
+    {
+      "variant": "candidate",
+      "fps": 10,
+      "clip": "late_ui",
+      "frames": 87,
+      "status_histogram": {
+        "1": 3,
+        "0": 84
+      },
+      "frames_with_boxes": 78,
+      "total_boxes": 243,
+      "max_boxes": 6,
+      "unique_output_ids": 14,
+      "host_wall_seconds": 0.13710240000364138,
+      "host_wall_ms_per_frame": 1.5758896552142687,
+      "caveat": "No GT: counts are not accuracy or ID-switch measurements. Host wall includes IO/JSON, not ARM or end-to-end latency. Only stable clip is used for primary comparison; full/late UI contain controls, pause and scaling changes."
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+[
+  {
+    "variant": "r13",
+    "fps": 5,
+    "boxes": 23,
+    "iou30": 18,
+    "iou50": 15,
+    "mean_iou": 0.5152910966912337,
+    "sparse_id_changes": 1
+  },
+  {
+    "variant": "r14",
+    "fps": 5,
+    "boxes": 23,
+    "iou30": 18,
+    "iou50": 15,
+    "mean_iou": 0.5261219414190772,
+    "sparse_id_changes": 3
+  },
+  {
+    "variant": "r13",
+    "fps": 10,
+    "boxes": 23,
+    "iou30": 18,
+    "iou50": 15,
+    "mean_iou": 0.5478138876858479,
+    "sparse_id_changes": 3
+  },
+  {
+    "variant": "r14",
+    "fps": 10,
+    "boxes": 23,
+    "iou30": 17,
+    "iou50": 15,
+    "mean_iou": 0.5349613395899213,
+    "sparse_id_changes": 5
+  }
+]

@@ -1,0 +1,142 @@
+[
+  {
+    "seq": 6036,
+    "range_mm": 379,
+    "state": "WARNING",
+    "imu": 1,
+    "camera_live": 1
+  },
+  {
+    "seq": 6045,
+    "range_mm": 372,
+    "state": "WARNING",
+    "imu": 1,
+    "camera_live": 1
+  },
+  {
+    "seq": 6054,
+    "range_mm": 375,
+    "state": "WARNING",
+    "imu": 1,
+    "camera_live": 1
+  },
+  {
+    "seq": 6064,
+    "range_mm": 383,
+    "state": "WARNING",
+    "imu": 1,
+    "camera_live": 1
+  },
+  {
+    "seq": 6073,
+    "range_mm": 383,
+    "state": "WARNING",
+    "imu": 1,
+    "camera_live": 1
+  },
+  {
+    "seq": 6083,
+    "range_mm": 376,
+    "state": "WARNING",
+    "imu": 1,
+    "camera_live": 1
+  },
+  {
+    "seq": 6093,
+    "range_mm": 372,
+    "state": "WARNING",
+    "imu": 1,
+    "camera_live": 1
+  },
+  {
+    "seq": 6103,
+    "range_mm": 371,
+    "state": "WARNING",
+    "imu": 1,
+    "camera_live": 1
+  },
+  {
+    "seq": 6111,
+    "range_mm": 370,
+    "state": "WARNING",
+    "imu": 1,
+    "camera_live": 1
+  },
+  {
+    "seq": 6120,
+    "range_mm": 365,
+    "state": "WARNING",
+    "imu": 1,
+    "camera_live": 1
+  },
+  {
+    "seq": 6130,
+    "range_mm": 369,
+    "state": "WARNING",
+    "imu": 1,
+    "camera_live": 1
+  },
+  {
+    "seq": 6140,
+    "range_mm": 365,
+    "state": "WARNING",
+    "imu": 1,
+    "camera_live": 1
+  },
+  {
+    "seq": 6151,
+    "range_mm": 361,
+    "state": "WARNING",
+    "imu": 1,
+    "camera_live": 1
+  },
+  {
+    "seq": 6159,
+    "range_mm": 364,
+    "state": "WARNING",
+    "imu": 1,
+    "camera_live": 1
+  },
+  {
+    "seq": 6170,
+    "range_mm": 371,
+    "state": "WARNING",
+    "imu": 1,
+    "camera_live": 1
+  },
+  {
+    "seq": 6179,
+    "range_mm": 366,
+    "state": "WARNING",
+    "imu": 1,
+    "camera_live": 1
+  },
+  {
+    "seq": 6189,
+    "range_mm": 367,
+    "state": "WARNING",
+    "imu": 1,
+    "camera_live": 1
+  },
+  {
+    "seq": 6199,
+    "range_mm": 369,
+    "state": "WARNING",
+    "imu": 1,
+    "camera_live": 1
+  },
+  {
+    "seq": 6208,
+    "range_mm": 365,
+    "state": "WARNING",
+    "imu": 1,
+    "camera_live": 1
+  },
+  {
+    "seq": 6218,
+    "range_mm": 364,
+    "state": "WARNING",
+    "imu": 1,
+    "camera_live": 1
+  }
+]

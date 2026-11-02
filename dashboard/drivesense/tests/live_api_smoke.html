@@ -1,0 +1,46 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><title>DriveSense live contract test</title>
+<style>body{font:15px/1.6 system-ui;margin:24px}iframe{width:100%;height:600px}pre{white-space:pre-wrap}</style>
+<h1>原有 DriveSense 实时接入契约检查（离线，未打开串口）</h1><pre id="result">RUNNING</pre>
+<iframe id="demo" src="../index.html?smoke=1#vehicle" title="Original DriveSense"></iframe>
+<script>
+document.getElementById("demo").addEventListener("load",()=>{
+  const out=document.getElementById("result"), w=document.getElementById("demo").contentWindow,d=w.document, checks=[];
+  function check(name,condition){if(!condition)throw new Error(name);checks.push("PASS "+name);}
+  try{
+    const frame=w.DriveAttitudeAdapter.toFrame({mode:"LIVE",roll:123,pitch:70,yaw:359,imu:1,mag:0,stale:false,connected:true,temp:25.1,rh:48,hpa:1013,lux:600,range_mm:250,range_state:"DANGER",rr:1,pr:2,yr:3});
+    check("single firmware pitch conversion",frame.pitch===-70);
+    w.DriveDemo.setTelemetryMode("LIVE");w.DriveDemo.pushFrame(frame);
+    check("live disables demo inputs",d.getElementById("rollSlider").disabled&&d.getElementById("autoBtn").disabled);
+    check("real roll not clipped to demo range",w.DriveDemo.telemetryState().target.roll===123);
+    check("real pitch not clipped to demo range",w.DriveDemo.telemetryState().target.pitch===-70);
+    check("clockwise heading preserved",w.DriveDemo.telemetryState().target.yaw===359);
+    check("relative yaw never appears as magnetic north",d.getElementById("headingReadout").textContent==="—");
+    const magnetic={heading_x10:1327,age_ms:3,stale:false,valid:1,detected:1,fresh:1,calibrated:1,aligned:1,collecting:0,level:1,direction_verified:1};
+    w.DriveDemo.pushCompass(w.DriveAttitudeAdapter.toCompass({connected:true,compass:magnetic}));
+    check("same integer rounding as board magnetic heading",d.getElementById("headingReadout").textContent==="133°"&&w.DriveDemo.telemetryState().target.yaw===359);
+    w.DriveDemo.pushFrame({...frame,heading:57});
+    check("relative pose update does not change compass",d.getElementById("headingReadout").textContent==="133°");
+    w.DriveDemo.pushCompass(w.DriveAttitudeAdapter.toCompass({connected:true,compass:{...magnetic,direction_verified:0}}));
+    check("unverified rotation is visibly provisional",d.getElementById("headingReadout").textContent==="133°"&&d.getElementById("headingCardinal").textContent==="VERIFY DIRECTION");
+    w.DriveDemo.pushCompass(w.DriveAttitudeAdapter.toCompass({connected:true,compass:{...magnetic,heading_x10:3599}}));
+    check("north rounding wraps 359.9 degrees to 000",d.getElementById("headingReadout").textContent==="000°");
+    w.DriveDemo.pushCompass(w.DriveAttitudeAdapter.toCompass({connected:true,compass:{...magnetic,selftest_result:2,detected:0,fresh:0}}));
+    check("failed selftest overrides missing sensor and hides heading",d.getElementById("headingReadout").textContent==="—"&&d.getElementById("headingCardinal").textContent==="SELFTEST FAILED");
+    w.DriveDemo.pushCompass(w.DriveAttitudeAdapter.toCompass({connected:true,compass:{...magnetic,level:0,valid:0}}));
+    check("tilted 2D compass hides magnetic heading",d.getElementById("headingReadout").textContent==="—"&&d.getElementById("headingCardinal").textContent==="KEEP LEVEL");
+    w.DriveDemo.setPose({roll:-1,pitch:2,heading:3});w.DriveDemo.playDemo();w.DriveDemo.reset();
+    check("public demo controls cannot replace live pose",w.DriveDemo.telemetryState().target.roll===123&&!w.DriveDemo.telemetryState().auto);
+    w.DriveDemo.pushFrame({...frame,temperature:null,humidity:null,pressure:null,lux:null,distance:null,distanceState:"NO DATA"});
+    check("invalid environment clears previous values",d.getElementById("tempReadout").textContent==="—"&&d.getElementById("distanceState").textContent==="NO DATA");
+    w.DriveDemo.invalidate("OFFLINE TEST");
+    check("invalid pose marked and readouts cleared",d.getElementById("rollReadout").textContent==="—"&&d.getElementById("vehicleStage").dataset.poseValid==="false");
+    w.DriveDemo.setTelemetryMode("DEMO");w.DriveDemo.playDemo();
+    check("explicit demo can be restored",!d.getElementById("rollSlider").disabled&&w.DriveDemo.telemetryState().auto);
+    w.DriveDemo.setTelemetryMode("LIVE");
+    w.DriveDemo.pushCompass(w.DriveAttitudeAdapter.toCompass({connected:true,imu:1,stale:false,heading_mode:"REL",yaw:137,compass:{selftest_result:2}}));
+    check("relative display is exact TEL integer",d.getElementById("headingReadout").textContent==="137°"&&d.getElementById("headingCardinal").textContent==="RELATIVE HEADING");
+    w.location.hash="#camera";
+    setTimeout(()=>{try{check("camera remains explicitly simulated",d.getElementById("cvSourceTitle").textContent==="SIMULATED SCENE"&&d.getElementById("cvCameraHealth").textContent==="NOT CONNECTED");out.textContent=checks.join("\n")+`\nPASS ${checks.length}/${checks.length}`;out.style.color="#087b40";}catch(error){out.textContent=checks.join("\n")+"\nFAIL "+error.message;}},120);
+  }catch(error){out.textContent=checks.join("\n")+"\nFAIL "+error.message;}
+},{once:true});
+</script></html>

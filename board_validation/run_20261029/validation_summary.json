@@ -1,0 +1,644 @@
+{
+  "date": "2026-10-29",
+  "physical_board": true,
+  "download_exit": 0,
+  "default_elf_sha256": "f96acef27206d58148a902f277d709aabaad9700b890d421d06848d33daabee1",
+  "experimental_downloaded": false,
+  "user_confirmed_displays_normal": true,
+  "tof_initialization": {
+    "stage": 16,
+    "ready": 1,
+    "running": 1,
+    "api": 0,
+    "io": 0,
+    "reset_enabled": 0
+  },
+  "near_card": {
+    "observations": 30,
+    "valid_observations": 30,
+    "mm_min": 230,
+    "mm_max": 252,
+    "mm_median": 240.5,
+    "raw": [
+      {
+        "index": 0,
+        "status": 0,
+        "mm": 236,
+        "signal_16_16": 411136,
+        "ambient_16_16": 21504,
+        "io": 0
+      },
+      {
+        "index": 1,
+        "status": 0,
+        "mm": 236,
+        "signal_16_16": 401920,
+        "ambient_16_16": 19968,
+        "io": 0
+      },
+      {
+        "index": 2,
+        "status": 0,
+        "mm": 242,
+        "signal_16_16": 376320,
+        "ambient_16_16": 20480,
+        "io": 0
+      },
+      {
+        "index": 3,
+        "status": 0,
+        "mm": 250,
+        "signal_16_16": 378880,
+        "ambient_16_16": 19456,
+        "io": 0
+      },
+      {
+        "index": 4,
+        "status": 0,
+        "mm": 241,
+        "signal_16_16": 415744,
+        "ambient_16_16": 20992,
+        "io": 0
+      },
+      {
+        "index": 5,
+        "status": 0,
+        "mm": 248,
+        "signal_16_16": 405504,
+        "ambient_16_16": 20992,
+        "io": 0
+      },
+      {
+        "index": 6,
+        "status": 0,
+        "mm": 246,
+        "signal_16_16": 405504,
+        "ambient_16_16": 22016,
+        "io": 0
+      },
+      {
+        "index": 7,
+        "status": 0,
+        "mm": 238,
+        "signal_16_16": 346112,
+        "ambient_16_16": 21504,
+        "io": 0
+      },
+      {
+        "index": 8,
+        "status": 0,
+        "mm": 241,
+        "signal_16_16": 334848,
+        "ambient_16_16": 19968,
+        "io": 0
+      },
+      {
+        "index": 9,
+        "status": 0,
+        "mm": 241,
+        "signal_16_16": 339456,
+        "ambient_16_16": 20480,
+        "io": 0
+      },
+      {
+        "index": 10,
+        "status": 0,
+        "mm": 252,
+        "signal_16_16": 339456,
+        "ambient_16_16": 21504,
+        "io": 0
+      },
+      {
+        "index": 11,
+        "status": 0,
+        "mm": 245,
+        "signal_16_16": 357888,
+        "ambient_16_16": 20992,
+        "io": 0
+      },
+      {
+        "index": 12,
+        "status": 0,
+        "mm": 250,
+        "signal_16_16": 350720,
+        "ambient_16_16": 22016,
+        "io": 0
+      },
+      {
+        "index": 13,
+        "status": 0,
+        "mm": 250,
+        "signal_16_16": 350720,
+        "ambient_16_16": 21504,
+        "io": 0
+      },
+      {
+        "index": 14,
+        "status": 0,
+        "mm": 243,
+        "signal_16_16": 396800,
+        "ambient_16_16": 20480,
+        "io": 0
+      },
+      {
+        "index": 15,
+        "status": 0,
+        "mm": 240,
+        "signal_16_16": 398336,
+        "ambient_16_16": 20992,
+        "io": 0
+      },
+      {
+        "index": 16,
+        "status": 0,
+        "mm": 237,
+        "signal_16_16": 356864,
+        "ambient_16_16": 21504,
+        "io": 0
+      },
+      {
+        "index": 17,
+        "status": 0,
+        "mm": 236,
+        "signal_16_16": 359936,
+        "ambient_16_16": 22016,
+        "io": 0
+      },
+      {
+        "index": 18,
+        "status": 0,
+        "mm": 241,
+        "signal_16_16": 344576,
+        "ambient_16_16": 20992,
+        "io": 0
+      },
+      {
+        "index": 19,
+        "status": 0,
+        "mm": 240,
+        "signal_16_16": 335872,
+        "ambient_16_16": 19456,
+        "io": 0
+      },
+      {
+        "index": 20,
+        "status": 0,
+        "mm": 239,
+        "signal_16_16": 337920,
+        "ambient_16_16": 19968,
+        "io": 0
+      },
+      {
+        "index": 21,
+        "status": 0,
+        "mm": 238,
+        "signal_16_16": 357376,
+        "ambient_16_16": 22016,
+        "io": 0
+      },
+      {
+        "index": 22,
+        "status": 0,
+        "mm": 236,
+        "signal_16_16": 396288,
+        "ambient_16_16": 20992,
+        "io": 0
+      },
+      {
+        "index": 23,
+        "status": 0,
+        "mm": 230,
+        "signal_16_16": 410112,
+        "ambient_16_16": 19968,
+        "io": 0
+      },
+      {
+        "index": 24,
+        "status": 0,
+        "mm": 233,
+        "signal_16_16": 399872,
+        "ambient_16_16": 21504,
+        "io": 0
+      },
+      {
+        "index": 25,
+        "status": 0,
+        "mm": 240,
+        "signal_16_16": 399360,
+        "ambient_16_16": 22016,
+        "io": 0
+      },
+      {
+        "index": 26,
+        "status": 0,
+        "mm": 241,
+        "signal_16_16": 368640,
+        "ambient_16_16": 20480,
+        "io": 0
+      },
+      {
+        "index": 27,
+        "status": 0,
+        "mm": 232,
+        "signal_16_16": 380416,
+        "ambient_16_16": 21504,
+        "io": 0
+      },
+      {
+        "index": 28,
+        "status": 0,
+        "mm": 239,
+        "signal_16_16": 406016,
+        "ambient_16_16": 20992,
+        "io": 0
+      },
+      {
+        "index": 29,
+        "status": 0,
+        "mm": 241,
+        "signal_16_16": 404480,
+        "ambient_16_16": 20480,
+        "io": 0
+      }
+    ]
+  },
+  "mid_card": {
+    "label": "card_50_60cm",
+    "xsdb_exit": 0,
+    "raw_observations": 30,
+    "raw_valid_observations": 27,
+    "raw_statuses": [
+      0,
+      4
+    ],
+    "raw_mm_min": 413,
+    "raw_mm_max": 512,
+    "web_observations": 63,
+    "web_valid_observations": 58,
+    "web_mm_min": 356,
+    "web_mm_max": 512,
+    "web_states": [
+      "NO DATA",
+      "WARNING"
+    ],
+    "web_levels": [
+      0,
+      2
+    ],
+    "api_errors": [],
+    "last_web": {
+      "roll": -0.5,
+      "pitch": 1.6,
+      "yaw": 2,
+      "rr": 0.0,
+      "pr": 0.0,
+      "yr": -0.1,
+      "temp": 27.2,
+      "rh": 43.0,
+      "hpa": 1004,
+      "lux": 212,
+      "range_mm": 457,
+      "level": 2,
+      "imu": 1,
+      "mag": 0,
+      "range_state": "WARNING",
+      "heading_mode": "REL",
+      "seq": 20707,
+      "video_epoch": 1,
+      "port": "COM10",
+      "connected": true,
+      "error": "",
+      "mode": "LIVE",
+      "stale": false,
+      "age_ms": 31.0,
+      "rx_hz": 23.2,
+      "compass": {
+        "kind": "CMP",
+        "heading_x10": 0,
+        "valid": 0,
+        "detected": 0,
+        "fresh": 0,
+        "calibrated": 0,
+        "aligned": 0,
+        "collecting": 0,
+        "level": 1,
+        "span_x": 0,
+        "span_y": 0,
+        "coverage": 0,
+        "samples": 0,
+        "raw_x": 0,
+        "raw_y": 0,
+        "raw_z": 0,
+        "reference_x10": 0,
+        "direction": -1,
+        "direction_verified": 0,
+        "fit_error_ppm": 0,
+        "tilt_deg10": 17,
+        "selftest_result": 4,
+        "selftest_status": 0,
+        "stale": false,
+        "age_ms": 31.0
+      },
+      "traffic": {
+        "kind": "TRAFFIC",
+        "frame_seq": 3350,
+        "color": 0,
+        "valid": 0,
+        "confidence": 0,
+        "countdown": -1,
+        "digit_valid": 0,
+        "age_ms": 236.0,
+        "proc_ms": 5,
+        "stale": false,
+        "source": "BOARD_UART"
+      },
+      "camera": {
+        "kind": "CAMERA",
+        "sequence": 2990,
+        "image_mode": 0,
+        "live": 1,
+        "configured": 1,
+        "width": 640,
+        "height": 480,
+        "stale": false,
+        "age_ms": 46.0,
+        "source": "BOARD_UART"
+      },
+      "detection": {
+        "kind": "DETECT",
+        "sequence": 1224,
+        "enabled": 0,
+        "supported": true,
+        "stale": false,
+        "age_ms": 281.0,
+        "source": "BOARD_UART",
+        "can_control": true
+      },
+      "obstacles": {
+        "kind": "OBSTACLE",
+        "result_seq": 412,
+        "source_frame": 405,
+        "state": 5,
+        "available": 1,
+        "age_ms": 416579.0,
+        "proc_ms": 22,
+        "count": 0,
+        "boxes": [],
+        "stale": true,
+        "valid": false,
+        "source": "BOARD_UART"
+      },
+      "captured_monotonic": 1192.796
+    },
+    "raw": [
+      {
+        "index": 0,
+        "status": 0,
+        "mm": 463,
+        "signal_16_16": 36352,
+        "ambient_16_16": 33280,
+        "io": 0
+      },
+      {
+        "index": 1,
+        "status": 4,
+        "mm": 8190,
+        "signal_16_16": 30720,
+        "ambient_16_16": 14336,
+        "io": 0
+      },
+      {
+        "index": 2,
+        "status": 4,
+        "mm": 8190,
+        "signal_16_16": 26624,
+        "ambient_16_16": 34304,
+        "io": 0
+      },
+      {
+        "index": 3,
+        "status": 0,
+        "mm": 499,
+        "signal_16_16": 29184,
+        "ambient_16_16": 14336,
+        "io": 0
+      },
+      {
+        "index": 4,
+        "status": 0,
+        "mm": 482,
+        "signal_16_16": 34816,
+        "ambient_16_16": 15872,
+        "io": 0
+      },
+      {
+        "index": 5,
+        "status": 0,
+        "mm": 458,
+        "signal_16_16": 34816,
+        "ambient_16_16": 35328,
+        "io": 0
+      },
+      {
+        "index": 6,
+        "status": 0,
+        "mm": 493,
+        "signal_16_16": 36864,
+        "ambient_16_16": 33280,
+        "io": 0
+      },
+      {
+        "index": 7,
+        "status": 0,
+        "mm": 487,
+        "signal_16_16": 40960,
+        "ambient_16_16": 33792,
+        "io": 0
+      },
+      {
+        "index": 8,
+        "status": 0,
+        "mm": 512,
+        "signal_16_16": 38400,
+        "ambient_16_16": 34816,
+        "io": 0
+      },
+      {
+        "index": 9,
+        "status": 0,
+        "mm": 441,
+        "signal_16_16": 43520,
+        "ambient_16_16": 34304,
+        "io": 0
+      },
+      {
+        "index": 10,
+        "status": 4,
+        "mm": 8190,
+        "signal_16_16": 49152,
+        "ambient_16_16": 33280,
+        "io": 0
+      },
+      {
+        "index": 11,
+        "status": 0,
+        "mm": 462,
+        "signal_16_16": 54784,
+        "ambient_16_16": 32256,
+        "io": 0
+      },
+      {
+        "index": 12,
+        "status": 0,
+        "mm": 434,
+        "signal_16_16": 45568,
+        "ambient_16_16": 33792,
+        "io": 0
+      },
+      {
+        "index": 13,
+        "status": 0,
+        "mm": 462,
+        "signal_16_16": 45056,
+        "ambient_16_16": 35840,
+        "io": 0
+      },
+      {
+        "index": 14,
+        "status": 0,
+        "mm": 463,
+        "signal_16_16": 55296,
+        "ambient_16_16": 33792,
+        "io": 0
+      },
+      {
+        "index": 15,
+        "status": 0,
+        "mm": 457,
+        "signal_16_16": 57344,
+        "ambient_16_16": 33280,
+        "io": 0
+      },
+      {
+        "index": 16,
+        "status": 0,
+        "mm": 470,
+        "signal_16_16": 54272,
+        "ambient_16_16": 34816,
+        "io": 0
+      },
+      {
+        "index": 17,
+        "status": 0,
+        "mm": 445,
+        "signal_16_16": 50176,
+        "ambient_16_16": 35328,
+        "io": 0
+      },
+      {
+        "index": 18,
+        "status": 0,
+        "mm": 450,
+        "signal_16_16": 60416,
+        "ambient_16_16": 33792,
+        "io": 0
+      },
+      {
+        "index": 19,
+        "status": 0,
+        "mm": 447,
+        "signal_16_16": 56832,
+        "ambient_16_16": 35328,
+        "io": 0
+      },
+      {
+        "index": 20,
+        "status": 0,
+        "mm": 439,
+        "signal_16_16": 57344,
+        "ambient_16_16": 33792,
+        "io": 0
+      },
+      {
+        "index": 21,
+        "status": 0,
+        "mm": 438,
+        "signal_16_16": 56832,
+        "ambient_16_16": 34816,
+        "io": 0
+      },
+      {
+        "index": 22,
+        "status": 0,
+        "mm": 413,
+        "signal_16_16": 62976,
+        "ambient_16_16": 34816,
+        "io": 0
+      },
+      {
+        "index": 23,
+        "status": 0,
+        "mm": 419,
+        "signal_16_16": 73728,
+        "ambient_16_16": 32768,
+        "io": 0
+      },
+      {
+        "index": 24,
+        "status": 0,
+        "mm": 432,
+        "signal_16_16": 68096,
+        "ambient_16_16": 33280,
+        "io": 0
+      },
+      {
+        "index": 25,
+        "status": 0,
+        "mm": 425,
+        "signal_16_16": 63488,
+        "ambient_16_16": 34304,
+        "io": 0
+      },
+      {
+        "index": 26,
+        "status": 0,
+        "mm": 414,
+        "signal_16_16": 69120,
+        "ambient_16_16": 34304,
+        "io": 0
+      },
+      {
+        "index": 27,
+        "status": 0,
+        "mm": 434,
+        "signal_16_16": 69632,
+        "ambient_16_16": 32768,
+        "io": 0
+      },
+      {
+        "index": 28,
+        "status": 0,
+        "mm": 416,
+        "signal_16_16": 68096,
+        "ambient_16_16": 32768,
+        "io": 0
+      },
+      {
+        "index": 29,
+        "status": 0,
+        "mm": 414,
+        "signal_16_16": 72192,
+        "ambient_16_16": 33280,
+        "io": 0
+      }
+    ]
+  },
+  "clock_valid": 1,
+  "compass_valid": false,
+  "limitations": [
+    "Mid-distance occasional phase failure remains.",
+    "No calibrated ground-truth distance.",
+    "No full feature requalification in this run.",
+    "Compass detected=0 and selftest IO_ERROR."
+  ]
+}

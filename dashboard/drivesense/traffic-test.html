@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Traffic TEST PATTERN / 摄像头光学测试源</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#0b1821;color:#d4e6eb;font:14px/1.65 system-ui,"Microsoft YaHei",sans-serif}main{max-width:1100px;margin:auto;padding:23px}header{display:flex;justify-content:space-between;gap:15px;align-items:start}h1{font-size:23px;margin:3px 0}p{color:#a8bec8;margin:5px 0 14px}.tag{font-size:11px;border:1px solid #d4b251;color:#f1d98d;padding:5px 10px;border-radius:20px;white-space:nowrap}.controls{display:flex;flex-wrap:wrap;gap:12px;align-items:end;padding:16px;border:1px solid #36515f;border-radius:12px;background:#142936;margin:17px 0}label{display:flex;flex-direction:column;font-size:12px;gap:5px}select,input,button{font:inherit;color:#ddedf2;background:#173b4b;border:1px solid #52707e;border-radius:6px;padding:8px 12px;min-height:40px}input[type=number]{width:85px}button{cursor:pointer}button:hover{background:#235168}.buttons{display:flex;gap:8px;flex-wrap:wrap}.screen{position:relative;display:flex;justify-content:center;align-items:center;width:100%;aspect-ratio:4/3;background:#121d25;border:1px solid #3f5e6a;border-radius:9px;overflow:hidden}.screen:fullscreen{width:100vw;height:100vh;aspect-ratio:auto;background:#101010;border:0;border-radius:0}.screen canvas{display:block;width:100%;height:100%;object-fit:contain;image-rendering:pixelated}.screen:fullscreen canvas{width:min(100vw,133.333vh);height:min(100vh,75vw)}.instructions{font-size:12px;line-height:1.9;color:#9eb8c3;margin:14px 0}.status{font-size:12px;color:#b7dfd3;margin-left:auto}a{color:#90d7de}.screen:fullscreen .fs-note{display:block}.fs-note{display:none;position:absolute;bottom:7px;left:12px;color:#c1ced1;font-size:11px;background:#101010b0;padding:4px 8px}
+@media(max-width:640px){main{padding:14px}header{flex-direction:column;gap:8px}h1{font-size:20px}.controls{gap:10px;padding:12px}.status{margin-left:0;width:100%}}
+</style></head><body><main><header><div><div class="tag" style="display:inline-block">TEST PATTERN · 人工光学测试源</div><h1>交通灯与七段倒计时</h1><p>让 OV5640 拍摄下方目标；本页仅生成测试图，不显示识别结果。</p></div><a href="/#camera">返回真实识别数据卡</a></header>
+<div class="controls"><label>灯色<select id="color"><option value="red">红灯</option><option value="amber">黄灯</option><option value="green">绿灯</option><option value="off">全部熄灭</option></select></label><label>固定秒数<input id="number" type="number" min="0" max="99" step="1" value="28"></label><label>数字显示<select id="digits"><option value="on">显示数字</option><option value="off">不显示 / 负样本</option></select></label><div class="buttons"><button id="auto" type="button">开始自动倒数</button><button id="fullscreen" type="button">全屏测试图</button><button id="save" type="button">保存 PNG</button></div><span id="status" class="status" role="status">静态固定 · 红灯 28</span></div>
+<div class="screen" id="screen"><canvas id="pattern" width="320" height="240" aria-label="人工交通灯和倒计时光学测试图"></canvas><span class="fs-note">人工 TEST PATTERN · 1 红 / 2 黄 / 3 绿 / 0 熄灭 · ← → 数字 · Space 暂停 · Esc 退出</span></div>
+<p class="instructions">默认与算法合成输入一致：320 × 240 基准，黑色灯壳和圆灯，七段字 15 × 29。先用静态 28 确认；再分别测 0、1、8、10、28、99 与关闭目标。在 320×240 分析缩略图中，灯的直径建议 14–24 像素、数字高 20–40 像素（HDMI 640×480 画面中约为两倍），可通过拍摄距离调整。用整幅测试区域填满相机视野，保持目标清楚、手机/电脑屏幕无明显反光。自动倒数只是测试源，接收网页不会自己推算倒计时。低于 10 显示单个数字；0 时停止自动倒数并保持 0。</p>
+<script>
+(function(){
+"use strict";
+const $=id=>document.getElementById(id),canvas=$("pattern"),ctx=canvas.getContext("2d");
+const MASKS=[0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x6f];
+const RECTS=[[1,0,13,3],[12,3,3,10],[12,16,3,10],[1,26,13,3],[0,16,3,10],[0,3,3,10],[1,13,13,3]];
+const RGB={red:"rgb(245,24,20)",amber:"rgb(245,190,15)",green:"rgb(20,235,45)"};
+const NAMES={red:"红灯",amber:"黄灯",green:"绿灯",off:"全部熄灭"};
+let running=false,timer=null;
+function number(){const n=Number($("number").value);return Number.isInteger(n)?Math.max(0,Math.min(99,n)):28;}
+function digit(value,x,y){const mask=MASKS[value];RECTS.forEach(([dx,dy,w,h],bit)=>{if(mask&(1<<bit))ctx.fillRect(x+dx,y+dy,w,h);});}
+function draw(){
+ const n=number(),color=$("color").value;
+ ctx.fillStyle="rgb(80,86,92)";ctx.fillRect(0,0,320,240);
+ ctx.fillStyle="rgb(12,16,20)";ctx.fillRect(50,20,44,100);
+ // One lit circular emitter, matching the detector's reference fixture.
+ ctx.beginPath();ctx.arc(72,46,9,0,Math.PI*2);ctx.fillStyle=RGB[color]||"rgb(18,22,24)";ctx.fill();
+ ctx.fillStyle="rgb(12,16,20)";ctx.fillRect(102,27,54,39);
+ if($("digits").value==="on"&&color!=="off"){
+  ctx.fillStyle=RGB[color];if(n>=10)digit(Math.floor(n/10),108,32);digit(n%10,130,32);
+ }
+ ctx.font="8px monospace";ctx.fillStyle="rgb(190,196,200)";ctx.fillText("TEST PATTERN - NOT A DETECTION",10,222);
+ $("status").textContent=(running?"自动倒数 · ":"静态固定 · ")+NAMES[color]+" "+($("digits").value==="on"?n:"--");
+ $("auto").textContent=running?"暂停并固定数字":"开始自动倒数";
+}
+function stop(){running=false;if(timer!==null)clearInterval(timer);timer=null;}
+function toggle(){if(running){stop();draw();return;}if(number()===0)$("number").value=28;running=true;timer=setInterval(()=>{let n=number();n=Math.max(0,n-1);$("number").value=n;if(n===0)stop();draw();},1000);draw();}
+["color","number","digits"].forEach(id=>$(id).addEventListener("input",()=>{stop();draw();}));
+$("auto").onclick=toggle;
+$("fullscreen").onclick=()=>$("screen").requestFullscreen().catch(()=>{$("status").textContent="浏览器不支持全屏，可隐藏地址栏或放大页面。";});
+$("save").onclick=()=>{const a=document.createElement("a");a.download=`traffic_test_${$("color").value}_${number()}.png`;a.href=canvas.toDataURL("image/png");a.click();};
+addEventListener("keydown",event=>{
+ if(["INPUT","SELECT"].includes(document.activeElement.tagName))return;
+ if(["1","2","3","0"].includes(event.key)){$("color").value={"1":"red","2":"amber","3":"green","0":"off"}[event.key];stop();draw();}
+ else if(event.key==="ArrowLeft"||event.key==="ArrowRight"){event.preventDefault();stop();$("number").value=Math.max(0,Math.min(99,number()+(event.key==="ArrowRight"?1:-1)));draw();}
+ else if(event.code==="Space"){event.preventDefault();toggle();}
+});
+addEventListener("pagehide",stop);
+window.TrafficTestPattern=Object.freeze({draw,masks:MASKS,segments:RECTS});
+draw();
+})();
+</script></main></body></html>

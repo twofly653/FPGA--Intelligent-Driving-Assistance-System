@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Vehicle Assist — Attitude Dashboard</title>
+<style>
+  :root {
+    --bg: #06101c;
+    --card: #0d1b2e;
+    --cyan: #3dd6ff;
+    --amber: #ffb020;
+    --green: #3dff9a;
+    --muted: #7f93a8;
+    --white: #f4f7fb;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; height: 100%;
+    background: radial-gradient(1200px 700px at 50% 20%, #10253f 0%, var(--bg) 60%);
+    color: var(--white);
+    font-family: "Segoe UI", "DIN Alternate", system-ui, sans-serif;
+    overflow: hidden;
+  }
+  #app { display: grid; grid-template-rows: auto minmax(200px, 1fr) auto; height: 100%; }
+  header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 28px; border-bottom: 1px solid #1c3350; min-height: 64px;
+    background: rgba(6,16,28,.72); backdrop-filter: blur(8px);
+  }
+  header h1 { margin: 0; font-size: 18px; letter-spacing: .08em; font-weight: 600; }
+  header h1 span { color: var(--cyan); }
+  #status { color: var(--amber); font-size: 13px; max-width: 520px; overflow-wrap: anywhere; }
+  #status.ok { color: var(--green); }
+  #stage { position: relative; min-height: 0; }
+  .controls { display: flex; align-items: center; gap: 8px; }
+  select, button { background: #12243a; border: 1px solid #234061; border-radius: 6px; color: var(--white); padding: 7px 10px; }
+  button { cursor: pointer; }
+  button:focus-visible, select:focus-visible { outline: 2px solid var(--cyan); }
+  #sensors { margin-top: auto; display: flex; gap: 12px; flex-wrap: wrap; color: var(--muted); font-size: 12px; }
+  #sensors span { border: 1px solid #234061; background: #0d1b2ed9; border-radius: 8px; padding: 9px 12px; }
+  #frame-note { color: var(--muted); font-size: 12px; margin: 10px 0; }
+  #invalid-pose { position: absolute; left: 50%; top: 48%; transform: translate(-50%, -50%); color: var(--amber); background: #06101cda; padding: 12px 18px; border-radius: 8px; }
+  #stage[data-valid="false"] canvas { opacity: .38; }
+  @media(max-width: 1100px) { header { flex-wrap: wrap; padding: 8px 16px; gap: 8px; } header h1 { font-size: 14px; } #status { font-size: 11px; } .cell .v { font-size: 26px; } }
+  canvas { display: block; width: 100%; height: 100%; }
+  #hud {
+    position: absolute; inset: 0; pointer-events: none;
+    display: flex; flex-direction: column; justify-content: space-between;
+    padding: 20px 24px;
+  }
+  .legend { display: flex; gap: 18px; font-size: 12px; color: var(--muted); letter-spacing: .12em; }
+  .legend b { font-weight: 700; }
+  .legend .r { color: var(--cyan); }
+  .legend .p { color: var(--amber); }
+  .legend .y { color: var(--green); }
+  footer {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
+    padding: 14px 24px 20px;
+  }
+  .cell {
+    background: linear-gradient(180deg, #12243a, var(--card));
+    border: 1px solid #234061; border-radius: 14px;
+    padding: 12px 16px; position: relative; overflow: hidden; min-width: 0;
+  }
+  .cell::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 3px;
+  }
+  .cell.roll::after { background: var(--cyan); }
+  .cell.pitch::after { background: var(--amber); }
+  .cell.yaw::after { background: var(--green); }
+  .cell .k { color: var(--muted); font-size: 11px; letter-spacing: .16em; }
+  .cell .v { font-size: 34px; font-weight: 700; margin-top: 2px; }
+  .cell .s { color: var(--muted); font-size: 12px; margin-top: 2px; }
+  #meta {
+    position: absolute; right: 24px; top: 20px; text-align: right;
+    font-size: 12px; color: var(--muted); line-height: 1.6;
+  }
+  @media(max-width: 640px) {
+    html, body { min-width: 280px; overflow-x: hidden; overflow-y: auto; }
+    #app { min-height: 680px; grid-template-rows: auto minmax(300px, 1fr) auto; }
+    header { padding: 10px 12px; gap: 7px; }
+    header h1 { width: 100%; font-size: 12px; letter-spacing: .04em; }
+    #status { width: 100%; max-width: none; order: 2; line-height: 1.35; }
+    .controls { width: 100%; order: 3; gap: 5px; }
+    select { flex: 1; min-width: 0; }
+    select, button { padding: 6px 7px; font-size: 11px; }
+    #hud { padding: 12px; }
+    .legend { gap: 12px; font-size: 10px; letter-spacing: .03em; }
+    #meta { position: static; text-align: left; margin-top: 8px; font-size: 10px; line-height: 1.55; }
+    #sensors { gap: 5px; font-size: 10px; }
+    #sensors span { padding: 6px 7px; }
+    #frame-note { font-size: 9px; line-height: 1.5; margin: 7px 0 0; }
+    #invalid-pose { font-size: 11px; text-align: center; width: max-content; max-width: 85%; }
+    footer { gap: 6px; padding: 8px; }
+    .cell { border-radius: 9px; padding: 8px 6px; }
+    .cell .k { font-size: 9px; line-height: 1.3; letter-spacing: .02em; min-height: 24px; overflow-wrap: anywhere; }
+    .cell .v { font-size: clamp(18px, 5.4vw, 27px); line-height: 1.25; white-space: nowrap; }
+    .cell .s { font-size: 9px; line-height: 1.3; overflow-wrap: anywhere; min-height: 24px; }
+  }
+</style>
+</head>
+<body>
+<div id="app">
+  <header>
+    <h1>VEHICLE FRAME <span>XYZ</span> · ESKF ATTITUDE</h1>
+    <div id="status" role="status" aria-live="polite">等待本机服务…</div>
+    <div class="controls"><select id="port" aria-label="串口"></select><button id="refresh">刷新</button><button id="connect">连接</button><button id="disconnect">断开</button></div>
+  </header>
+  <div id="stage" data-valid="false">
+    <div id="hud">
+      <div class="legend">
+        <span class="r">● <b>ROLL</b></span>
+        <span class="p">● <b>PITCH</b></span>
+        <span class="y">● <b>YAW</b></span>
+      </div>
+      <div id="meta">
+        <b id="source" style="color:var(--white)">等待真实板卡</b><br/>
+        <span id="link-meta">无有效遥测</span><br/>
+        黄色车头 = +X · 随板卡旋转
+      </div>
+      <div id="sensors"><span id="env">温度 — · 湿度 —</span><span id="light">气压 — · 光照 —</span><span id="range">前方距离 —</span></div>
+      <div id="frame-note">板体 +X 前 · +Y 左 · +Z 上；相对航向顺时针，初始方向为 0°</div>
+    </div>
+    <div id="invalid-pose">等待 IMU 初始化或连接</div>
+  </div>
+  <footer>
+    <div class="cell roll"><div class="k">ROLL / LONGITUDINAL</div><div class="v" id="roll">—</div><div class="s">LIVE FUSION</div></div>
+    <div class="cell pitch"><div class="k">PITCH / LATERAL</div><div class="v" id="pitch">—</div><div class="s">LIVE FUSION</div></div>
+    <div class="cell yaw"><div class="k">HEADING / YAW</div><div class="v" id="yaw">—</div><div class="s" id="yaw-mode">WAITING FOR IMU</div></div>
+  </footer>
+</div>
+<script type="importmap">
+{
+  "imports": {
+    "three": "./vendor/three/three.module.js"
+  }
+}
+</script>
+<script type="module">
+import * as THREE from "three";
+import { modelQuaternion } from "./attitude_math.js";
+
+const stage = document.getElementById("stage");
+const statusEl = document.getElementById("status");
+const rollEl = document.getElementById("roll");
+const pitchEl = document.getElementById("pitch");
+const yawEl = document.getElementById("yaw");
+
+const scene = new THREE.Scene();
+scene.fog = new THREE.FogExp2(0x06101c, 0.045);
+
+const camera = new THREE.PerspectiveCamera(42, 1, 0.1, 100);
+camera.position.set(3.2, 2.2, 4.2);
+camera.lookAt(0, 0.2, 0);
+
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+renderer.shadowMap.enabled = true;
+stage.insertBefore(renderer.domElement, stage.firstChild);
+
+const hemi = new THREE.HemisphereLight(0x9fd9ff, 0x1a2433, 1.1);
+scene.add(hemi);
+const key = new THREE.DirectionalLight(0xffffff, 1.4);
+key.position.set(4, 8, 2);
+key.castShadow = true;
+scene.add(key);
+const rim = new THREE.DirectionalLight(0x3dd6ff, 0.55);
+rim.position.set(-5, 2, -3);
+scene.add(rim);
+
+const grid = new THREE.GridHelper(16, 32, 0x3dd6ff, 0x1c3350);
+grid.position.y = -0.55;
+scene.add(grid);
+
+const car = new THREE.Group();
+scene.add(car);
+
+function box(w, h, d, color, y, z = 0, x = 0) {
+  const m = new THREE.Mesh(
+    new THREE.BoxGeometry(w, h, d),
+    new THREE.MeshStandardMaterial({ color, metalness: 0.55, roughness: 0.35 })
+  );
+  m.position.set(x, y, z);
+  m.castShadow = true;
+  m.receiveShadow = true;
+  car.add(m);
+  return m;
+}
+
+box(2.4, 0.35, 1.1, 0x2bb7d8, 0.0);
+box(1.1, 0.35, 0.95, 0x1a8fb0, 0.35, 0, -0.15);
+box(0.9, 0.08, 0.85, 0x0d2a3a, 0.55, 0, -0.15);
+box(0.36, 0.12, 0.95, 0xffb020, 0.05, 0, 1.05); // nose = model +X = board +X
+
+function wheel(x, z) {
+  const w = new THREE.Mesh(
+    new THREE.CylinderGeometry(0.22, 0.22, 0.16, 24),
+    new THREE.MeshStandardMaterial({ color: 0x111820, metalness: 0.2, roughness: 0.8 })
+  );
+  w.rotation.x = Math.PI / 2; // axle = model Z, wheels at +/-Z sides
+  w.position.set(x, -0.28, z);
+  car.add(w);
+}
+wheel(-0.85, 0.42); wheel(0.85, 0.42);
+wheel(-0.85, -0.42); wheel(0.85, -0.42);
+
+const axes = new THREE.AxesHelper(1.4);
+axes.position.y = 0.9;
+car.add(axes);
+
+const targetQ = new THREE.Quaternion();
+let firstPose = true, lastRender = performance.now(), lastMessage = 0, poseValid = false;
+let latest = {};
+
+function resize() {
+  const w = stage.clientWidth, h = stage.clientHeight;
+  camera.aspect = w / Math.max(h, 1);
+  // Fit the same vehicle in a narrow app side panel without cropping its nose.
+  const fit = Math.max(1, 0.95 / camera.aspect);
+  camera.position.set(3.2, 2.2, 4.2).multiplyScalar(fit);
+  camera.lookAt(0, 0.2, 0);
+  camera.updateProjectionMatrix();
+  renderer.setSize(w, h, false);
+}
+addEventListener("resize", resize);
+resize();
+
+function animate(now = performance.now()) {
+  requestAnimationFrame(animate);
+  const dt = Math.min(0.1, Math.max(0, (now - lastRender) / 1000));
+  lastRender = now;
+  if (poseValid) car.quaternion.slerp(targetQ, 1 - Math.exp(-dt / 0.018));
+  // A severed bridge cannot leave the last pose labelled LIVE forever.
+  if (lastMessage && now - lastMessage > 650 && poseValid) invalidate("遥测已中断 · STALE");
+  renderer.render(scene, camera);
+}
+animate();
+
+function invalidate(text) {
+  poseValid = false;
+  firstPose = true;
+  stage.dataset.valid = "false";
+  rollEl.textContent = pitchEl.textContent = yawEl.textContent = "—";
+  statusEl.textContent = text;
+  statusEl.className = "";
+  document.getElementById("invalid-pose").hidden = false;
+  document.getElementById("invalid-pose").textContent = text;
+  document.getElementById("yaw-mode").textContent = "NO VALID POSE";
+}
+
+const fmt = (v, suffix, digits = 0) => v == null || !Number.isFinite(+v) ? "—" : `${(+v).toFixed(digits)}${suffix}`;
+function apply(msg) {
+  latest = msg;
+  lastMessage = performance.now();
+  document.getElementById("source").textContent = msg.mode === "REPLAY" ? "回放验证 · 非板卡实测" : `真实板卡 · ${msg.port || "未连接"}`;
+  document.getElementById("link-meta").textContent = `${fmt(msg.rx_hz, " Hz", 1)} · 接收后 ${fmt(msg.age_ms, " ms", 0)}`;
+  stage.dataset.seq = msg.seq;
+  const stale = msg.stale || !msg.connected;
+  document.getElementById("env").textContent = `温度 ${fmt(stale ? null : msg.temp, "°C", 1)} · 湿度 ${fmt(stale ? null : msg.rh, "%")}`;
+  document.getElementById("light").textContent = `气压 ${fmt(stale ? null : msg.hpa, " hPa")} · 光照 ${fmt(stale ? null : msg.lux, " lx")}`;
+  document.getElementById("range").textContent = `前方距离 ${!stale && msg.range_mm >= 0 ? fmt(msg.range_mm / 1000, " m", 2) : "—"} · ${!stale ? msg.range_state || "NO DATA" : "NO DATA"}`;
+  if (!msg.imu || stale) {
+    invalidate(msg.error || (!msg.connected ? "串口未连接" : msg.age_ms == null ? "串口已连接，等待 TEL · 按 BTN0 启动板卡" : msg.stale ? "遥测已中断 · STALE" : "IMU 初始化中 / 等待静止对齐"));
+    return;
+  }
+  const roll = +msg.roll, pitch = +msg.pitch, yaw = +msg.yaw;
+  if (![roll, pitch, yaw].every(Number.isFinite)) { invalidate("姿态帧格式错误"); return; }
+  targetQ.fromArray(modelQuaternion(roll, pitch, yaw));
+  if (firstPose) { car.quaternion.copy(targetQ); firstPose = false; }
+  poseValid = true;
+  stage.dataset.valid = "true";
+  stage.dataset.pose = `${roll},${pitch},${yaw}`;
+  document.getElementById("invalid-pose").hidden = true;
+  rollEl.textContent = `${roll.toFixed(1)}°`;
+  pitchEl.textContent = `${pitch.toFixed(1)}°`;
+  yawEl.textContent = `${yaw.toFixed(0)}°`;
+  document.getElementById("yaw-mode").textContent = msg.mag ? "MAGNETIC HEADING" : "RELATIVE YAW · MAY DRIFT";
+  statusEl.textContent = msg.mode === "REPLAY" ? "REPLAY · 回放验证（非实测）" : "LINKED · 实时姿态";
+  statusEl.className = msg.mode === "REPLAY" ? "" : "ok";
+}
+
+async function refreshPorts() {
+  try {
+    const old = document.getElementById("port").value;
+    const result = await (await fetch("/api/ports", {cache:"no-store"})).json();
+    const select = document.getElementById("port");
+    select.replaceChildren(...result.ports.map(p => new Option(p, p)));
+    if (!result.ports.length) select.add(new Option("无串口", ""));
+    if (result.ports.includes(old)) select.value = old;
+  } catch (error) { invalidate(`端口列表读取失败：${error.message}`); }
+}
+async function command(name, data = {}) {
+  try {
+    const response = await fetch(`/api/${name}`, {method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify(data)});
+    const obj = await response.json();
+    if (!response.ok) throw new Error(obj.error || response.status);
+    apply(obj);
+  } catch (error) { invalidate(`连接失败：${error.message}`); }
+}
+document.getElementById("refresh").onclick = refreshPorts;
+document.getElementById("connect").onclick = () => command("connect", {port: document.getElementById("port").value});
+document.getElementById("disconnect").onclick = () => command("disconnect");
+refreshPorts();
+const events = new EventSource("/events");
+events.onmessage = event => { try { apply(JSON.parse(event.data)); } catch (_) { invalidate("遥测解析失败"); } };
+events.onerror = () => invalidate("本机服务连接中断 · 正在重连");
+addEventListener("beforeunload", () => events.close());
+</script>
+</body>
+</html>

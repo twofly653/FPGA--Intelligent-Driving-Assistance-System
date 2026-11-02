@@ -1,0 +1,70 @@
+# ===== Python =====
+.venv/
+venv/
+env/
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.ipynb_checkpoints/
+
+# ===== Node =====
+node_modules/
+
+# ===== PC 视觉端：虚拟环境缓存、模型权重、运行产物 =====
+pc_vision/.cache/
+pc_vision/models/
+pc_vision/runs/
+pc_vision/validation/
+pc_vision/ultralytics/
+*.pt
+*.pth
+*.onnx
+*.engine
+
+# ===== Xilinx / Vitis 构建产物 =====
+.Xil/
+.vitis/
+build/
+*.jou
+*.log
+*.str
+*.pb
+*.dcp
+*.ltx
+*.wcfg
+*.vcd
+*.fsdb
+*.wdb
+*.hdf
+*.elf
+*.bit
+*.xsa
+*.bin
+*.rgb565
+*.o
+*.a
+*.d
+*.so
+*.dll
+*.exe
+
+# ===== 网页端临时目录 =====
+dashboard/.work/
+dashboard/.thumbnails/
+
+# ===== 媒体证据（体积大，另行存放）=====
+*.mp4
+*.avi
+*.mkv
+*.mov
+
+# ===== 其他 =====
+.merge_backup_*/
+*.map
+*.ppm
+*.bak
+*.orig
+*.rej
+.DS_Store
+Thumbs.db

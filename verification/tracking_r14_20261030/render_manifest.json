@@ -1,0 +1,18 @@
+[
+  {
+    "video": "bilibili",
+    "output": "D:\\project\\FPGA_PYNQ_Integrated\\lcd_english_20261028\\verification\\tracking_r14_20261030\\bilibili_R13_R14_comparison.mp4",
+    "sha256": "d6f538c71a3b9d3f3cc17a9de5ff437bfe22b205eb244ecf47c505184c6071f2",
+    "full_decode_ok": true,
+    "frames": 206,
+    "interpolation": false
+  },
+  {
+    "video": "supplied",
+    "output": "D:\\project\\FPGA_PYNQ_Integrated\\lcd_english_20261028\\verification\\tracking_r14_20261030\\supplied_R13_R14_comparison.mp4",
+    "sha256": "42a5305c79fbcb0bd5d69741d8d8d4a7d09c076b7cbdf77bd7975192f4e8813b",
+    "full_decode_ok": true,
+    "frames": 95,
+    "interpolation": false
+  }
+]

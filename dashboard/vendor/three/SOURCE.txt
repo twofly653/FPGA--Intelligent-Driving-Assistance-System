@@ -1,0 +1,4 @@
+Three.js r160 (0.160.0)
+Official source: https://github.com/mrdoob/three.js/tree/r160
+License: MIT; full license is included.
+Downloaded 2026-10-17. No runtime network dependency.

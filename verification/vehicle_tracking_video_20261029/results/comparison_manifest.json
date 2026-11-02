@@ -1,0 +1,45 @@
+{
+  "video": "D:\\project\\FPGA_PYNQ_Integrated\\lcd_english_20261028\\verification\\vehicle_tracking_video_20261029\\results\\R12_R13_video_comparison.mp4",
+  "sha256": "24f39df6ace3671980f1d24c102a267d20dde9faa767c26d5d816a7f5bab16ee",
+  "fps": 10,
+  "frames": 95,
+  "source_start_s": 5.5,
+  "source_end_s": 15.0,
+  "input_size": [
+    320,
+    240
+  ],
+  "visualization": "Active input rows 47..192 magnified; boxes from actual replay JSON, no interpolation.",
+  "command": [
+    "D:\\Software for daily live\\EVCapture\\ffmpeg.exe",
+    "-v",
+    "error",
+    "-y",
+    "-f",
+    "rawvideo",
+    "-pix_fmt",
+    "rgb24",
+    "-s",
+    "1280x480",
+    "-r",
+    "10",
+    "-i",
+    "-",
+    "-an",
+    "-c:v",
+    "libx264",
+    "-preset",
+    "fast",
+    "-crf",
+    "18",
+    "-pix_fmt",
+    "yuv420p",
+    "-movflags",
+    "+faststart",
+    "D:\\project\\FPGA_PYNQ_Integrated\\lcd_english_20261028\\verification\\vehicle_tracking_video_20261029\\results\\R12_R13_video_comparison.mp4"
+  ],
+  "replay_sha256": {
+    "baseline": "17430a21e42dcfd229d71ad1864f44b285ba233d91e5a64a4dc050f7efd175bd",
+    "candidate": "dd3d70229313cc46b18b6e519f0e2354f843f97dbf9e82553737fecc68c45e1c"
+  }
+}

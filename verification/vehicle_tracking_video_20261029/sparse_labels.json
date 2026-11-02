@@ -1,0 +1,13 @@
+{
+  "description": "Manual sparse labels on unannotated RGB565 video frames, approximately +/-2px; A/B white SUVs, C red car, D blue bus. Not exhaustive scene ground truth. Includes visibly truncated vehicles; car roofs at 8/9s excluded. No FP or general accuracy claims.",
+  "coordinates": "320x240 input, xywh; active video y47..192",
+  "frames": {
+    "8": {"A":[111,136,28,24],"C":[164,168,38,25]},
+    "9": {"A":[115,125,24,22],"C":[164,159,37,34]},
+    "10":{"A":[119,114,20,17],"B":[102,175,39,18],"C":[159,145,33,39]},
+    "11":{"A":[122,104,17,16],"B":[106,159,34,32],"C":[155,129,26,30],"D":[159,170,62,23]},
+    "12":{"A":[124,96,14,13],"B":[110,142,28,27],"C":[152,117,21,24],"D":[156,149,65,44]},
+    "13":{"A":[125,90,13,11],"B":[113,127,24,22],"C":[151,107,17,19],"D":[152,129,52,64]},
+    "14":{"A":[126,84,10,10],"B":[118,112,19,17],"C":[149,96,13,15],"D":[151,111,39,51]}
+  }
+}

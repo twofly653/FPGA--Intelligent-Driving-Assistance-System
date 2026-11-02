@@ -1,0 +1,33 @@
+/* Small connection strip; keep the original DriveSense layouts and assets. */
+.hardware-link { display:flex; align-items:center; flex-wrap:wrap; gap:10px 16px; margin:0 0 20px; padding:10px 14px; border:1px solid #274255; border-radius:10px; background:#0d1d2c; font-size:12px; color:#a9c4d1; }
+#linkStatus { flex:1; min-width:180px; overflow-wrap:anywhere; }
+#linkMetrics { color:#77cbd4; font-variant-numeric:tabular-nums; }
+.link-controls { display:flex; gap:6px; flex-wrap:wrap; }
+.link-controls button,.link-controls select { background:#122a3c; color:#d8edf3; border:1px solid #335367; border-radius:6px; padding:7px 10px; font:inherit; }
+.link-controls button { cursor:pointer; }
+.link-controls button:focus-visible,.link-controls select:focus-visible { outline:2px solid #65e3e6; }
+.hardware-link[data-state="live"] #linkStatus { color:#9ee4b6; }
+.hardware-link[data-state="replay"] #linkStatus,.hardware-link[data-state="invalid"] #linkStatus { color:#f4c777; }
+.vehicle-stage[data-pose-valid="false"] canvas { opacity:.32; }
+.pose-invalid-note { display:none; position:absolute; left:50%; top:46%; transform:translate(-50%,-50%); z-index:5; max-width:90%; padding:10px 16px; border-radius:8px; color:#f4c777; background:#081321df; text-align:center; font-size:12px; }
+.vehicle-stage[data-pose-valid="false"] .pose-invalid-note { display:block; }
+input:disabled,button:disabled { opacity:.42; cursor:default; }
+@media(max-width:640px) { .hardware-link { gap:8px; padding:10px; margin-bottom:14px; } #linkStatus { flex-basis:100%; font-size:11px; } .link-controls { width:100%; gap:5px; } .link-controls select { flex:1; min-width:60px; } .link-controls button,.link-controls select { padding:6px 7px; font-size:10px; } }
+.compass-calibration {border-top:1px solid #294458;padding:12px 16px;color:#b4cad4;font-size:12px;line-height:1.6}
+.compass-calibration summary {cursor:pointer;font-weight:650;color:#d7eaf1}
+.compass-calibration p {margin:8px 0}
+.compass-calibration ol {margin:8px 0;padding-left:20px}
+.compass-calibration .cal-help {color:#91acbb;font-size:11px}
+.cal-buttons {display:flex;flex-wrap:wrap;gap:7px;margin-top:9px}
+.compass-calibration button,.compass-calibration input {border:1px solid #436474;background:#122d3d;color:#e0f2f7;border-radius:7px;padding:8px;font:inherit}
+.compass-calibration button {cursor:pointer;min-height:38px}
+.compass-calibration button:disabled {opacity:.4;cursor:default}
+.compass-calibration button:hover:enabled {border-color:#6dd3df}
+.cal-reference {display:flex;flex-wrap:wrap;align-items:center;gap:7px;margin-top:10px}
+.cal-reference input {width:82px;min-width:0}
+.cal-reference label {font-size:11px}
+.cal-metrics {font-variant-numeric:tabular-nums;font-size:11px;color:#9dc6d2;overflow-wrap:anywhere}
+#compassCommandStatus {color:#f7c977;min-height:18px}
+.compass-panel[data-valid="false"] .compass-dial {opacity:.4}
+.compass-panel[data-valid="false"] #headingReadout {color:#a5b9c4}
+.compass-center #headingCardinal {font-size:8px;max-width:160px;line-height:1.5;letter-spacing:.06em}

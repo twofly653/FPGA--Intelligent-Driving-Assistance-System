@@ -1,0 +1,90 @@
+[
+  {
+    "time": "2026-10-28T18:38:56.9081802+08:00",
+    "seq": 132431,
+    "range_mm": -1,
+    "range_state": "NO DATA",
+    "imu": 0,
+    "temp": 27.0,
+    "lux": 172,
+    "connected": true,
+    "stale": false
+  },
+  {
+    "time": "2026-10-28T18:38:57.3213278+08:00",
+    "seq": 132451,
+    "range_mm": -1,
+    "range_state": "NO DATA",
+    "imu": 0,
+    "temp": 27.0,
+    "lux": 172,
+    "connected": true,
+    "stale": false
+  },
+  {
+    "time": "2026-10-28T18:38:57.7303073+08:00",
+    "seq": 132472,
+    "range_mm": -1,
+    "range_state": "NO DATA",
+    "imu": 0,
+    "temp": 27.0,
+    "lux": 163,
+    "connected": true,
+    "stale": false
+  },
+  {
+    "time": "2026-10-28T18:38:58.1449986+08:00",
+    "seq": 132493,
+    "range_mm": -1,
+    "range_state": "NO DATA",
+    "imu": 0,
+    "temp": 27.0,
+    "lux": 163,
+    "connected": true,
+    "stale": false
+  },
+  {
+    "time": "2026-10-28T18:38:58.5503874+08:00",
+    "seq": 132514,
+    "range_mm": -1,
+    "range_state": "NO DATA",
+    "imu": 0,
+    "temp": 27.0,
+    "lux": 163,
+    "connected": true,
+    "stale": false
+  },
+  {
+    "time": "2026-10-28T18:38:58.9568990+08:00",
+    "seq": 132533,
+    "range_mm": -1,
+    "range_state": "NO DATA",
+    "imu": 0,
+    "temp": 27.0,
+    "lux": 164,
+    "connected": true,
+    "stale": false
+  },
+  {
+    "time": "2026-10-28T18:38:59.3648372+08:00",
+    "seq": 132554,
+    "range_mm": -1,
+    "range_state": "NO DATA",
+    "imu": 0,
+    "temp": 27.0,
+    "lux": 164,
+    "connected": true,
+    "stale": false
+  },
+  {
+    "time": "2026-10-28T18:38:59.7705061+08:00",
+    "seq": 132574,
+    "range_mm": -1,
+    "range_state": "NO DATA",
+    "imu": 0,
+    "temp": 27.0,
+    "lux": 171,
+    "connected": true,
+    "stale": false
+  }
+]
