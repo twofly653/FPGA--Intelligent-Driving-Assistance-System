@@ -15,8 +15,10 @@ node_modules/
 pc_vision/.cache/
 pc_vision/models/
 pc_vision/runs/
-pc_vision/validation/
 pc_vision/ultralytics/
+# 验证目录只保留说明文档（.md），其余为日志/可执行文件/仿真临时文件
+pc_vision/validation/*
+!pc_vision/validation/*.md
 *.pt
 *.pth
 *.onnx
@@ -64,7 +66,15 @@ dashboard/.thumbnails/
 *.map
 *.ppm
 *.bak
+*.bak_*
 *.orig
 *.rej
 .DS_Store
 Thumbs.db
+
+# ===== Vivado 仿真临时目录 / 仿真中间产物 =====
+xsim.dir/
+*.sdb
+*.reloc
+*.win64.obj
+xsim.version
