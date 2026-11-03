@@ -1,1 +1,0 @@
-D:\project\FPGA_PYNQ_Integrated\lcd_english_20261028\board_validation\run_all_20261029_192013

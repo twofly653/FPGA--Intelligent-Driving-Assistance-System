@@ -1,5 +1,5 @@
 param(
- [string]$Source=(Join-Path $PSScriptRoot '..\verification\bilibili_tracking_20261030\BV11x411R7o6_p1_car.mp4'),
+ [Parameter(Mandatory=$true)][string]$Source,
  [int]$ImageSize=960,
  [string]$Output=''
 )
