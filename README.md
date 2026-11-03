@@ -14,7 +14,7 @@ DriveSense 是一套基于 PYNQ-Z2 与 OV5640 的车载视觉、姿态感知和�
 - **姿态与环境感知**：LSM6DSM IMU、磁力计、温湿度、气压、光照等传感器，支持姿态解算、相对航向和网页同步显示。
 - **扩展屏交互**：全英文扩展屏页面、真实时钟、行程计时、触摸与五向开关；网页端可同步状态和控制量。
 - **静态拍照**：支持原生 2592×1944 JPEG（约 503 万像素）照片；拍照阶段会暂缓视频分析，完成后恢复实时链路。
-- **PC 协同视觉**：`pc_vision/` 提供 YOLOv5su + ByteTrack 及关联优化，通过网口接收 320×240 RGB565 分析帧，将编号、类别和最多 8 个目标框回传板卡；HDMI 主视频保持 640×480。该模式需要电脑、模型权重和相应 GPU 环境。
+- **PC 协同视觉**：`src/pc_vision/` 提供 YOLOv5su + ByteTrack 及关联优化，通过网口接收 320×240 RGB565 分析帧，将编号、类别和最多 8 个目标框回传板卡；HDMI 主视频保持 640×480。该模式需要电脑、模型权重和相应 GPU 环境。
 
 ## 已验证的性能指标
 
@@ -28,7 +28,7 @@ DriveSense 是一套基于 PYNQ-Z2 与 OV5640 的车载视觉、姿态感知和�
 | 运动目标框数 | 单帧最多 8 框 | 固件接口与验证记录 |
 | ToF 近距离样本 | 30/30 有效，230–252 mm | 2026-10-29 近距离纸板测试 |
 | ToF 中距离样本 | 27/30 有效，413–512 mm | 2026-10-29 中距离纸板测试 |
-| 跟踪离线稀疏匹配 | R13 在 10 fps 样本中 IoU≥0.5 为 15/23 | `verification/vehicle_tracking_video_20261029/` |
+| 跟踪离线稀疏匹配 | R13 在 10 fps 样本中 IoU≥0.5 为 15/23 | `sim/vehicle_tracking_video_20261029/` |
 | 目标处理耗时 | 板端记录约 11–44 ms（视场景而变） | R13 网页连续采样 |
 
 板端独立算法采用固定摄像头前景/运动区域跟踪；PC 协同模式额外提供车辆类别检测和编号跟踪。两种模式均不提供逐框距离。稀疏 IoU 结果没有稠密真值，不能写成总体准确率、召回率或标准 MOT 指标。指南针默认是相对 Yaw，不能据此宣称磁北绝对航向。
@@ -51,27 +51,33 @@ PL + DDR 帧缓冲
 ## 目录说明
 
 ```text
-DriveSense_Source_20261102/
-├── README.md                         # 项目说明与复现入口
-├── rtl/                              # FPGA RTL 与硬件接口源码
-├── firmware/src/                     # ARM 裸机固件源码
-├── firmware/network/                 # 以太网与协议支持
-├── dashboard/                        # 网页服务、页面和硬件同步
-├── pc_vision/                        # PC 端视觉与跟踪工具
-├── board_validation/                 # 下载脚本、板测日志和快照
-├── verification/                     # 离线回归、跟踪对比和测试脚本
-├── preview/                          # UI/板端预览资源
-└── docs/                             # R17 修改说明和扩展屏使用说明
+drivesense/
+├── README.md                 # 项目简介、依赖与复现步骤
+├── src/                      # 设计源码
+│   ├── rtl/                  # FPGA RTL 与硬件接口
+│   ├── firmware/             # ARM 固件与网络支持
+│   ├── dashboard/            # 网页、串口桥和数据同步
+│   └── pc_vision/            # PC 端车辆识别与跟踪
+├── sim/                      # 离线测试、回归脚本与测试结果
+├── build/                    # 应用构建脚本与构建说明
+├── board/                    # 下载/诊断脚本与已有板测记录
+├── data/                     # 界面预览与参考数据说明
+├── skill/                    # 可复用检查脚本与排查工作流
+│   └── README.md
+└── report/                   # 技术说明、验证记录与目录迁移说明
 ```
 
-仓库按源码提交规范忽略 `*.elf`、`*.bit`、`*.xsa`、模型权重、视频和构建中间文件。烧录时必须使用同一轮硬件发布生成的 BIT、XSA、`ps7_init.tcl` 和 ELF，不能跨版本混用。本源码快照实际未包含 BIT、XSA、ELF、BSP 静态库、模型权重或完整 Vivado 工程（顶层、约束和完整 IP 工程）。`rtl/` 中提供的是接口与叠加相关的三个 RTL 文件。因此本包可用于阅读、二次开发和已有平台上的复现，不能单独宣称“解压即可重新生成完整 FPGA 工程并烧录”。历史记录中的本机发布文件路径仅作追溯，不代表这些文件已随仓库提供。
+目录按竞赛截图整理。除模板要求的 `README.md` 外，路径均使用小写英文字母、数字、下划线、连字符及扩展名分隔点。中文仅保留在文件正文中。目录迁移与清理不改变板端算法；历史日志内的原机器路径、版本及哈希保留作追溯，不能直接作为新机器运行路径。各目录 README 区分当前入口和历史工具。
+
+
+仓库按源码提交规范忽略 `*.elf`、`*.bit`、`*.xsa`、模型权重、视频和构建中间文件。烧录时必须使用同一轮硬件发布生成的 BIT、XSA、`ps7_init.tcl` 和 ELF，不能跨版本混用。本源码快照实际未包含 BIT、XSA、ELF、BSP 静态库、模型权重或完整 Vivado 工程（顶层、约束和完整 IP 工程）。`src/rtl/` 中提供的是接口与叠加相关的三个 RTL 文件。因此本包可用于阅读、二次开发和已有平台上的复现，不能单独宣称“解压即可重新生成完整 FPGA 工程并烧录”。历史记录中的本机发布文件路径仅作追溯，不代表这些文件已随仓库提供。
 
 ## 离线构建 ARM 应用
 
 先准备 AMD 工具链和与 OB02 硬件匹配的 standalone BSP。构建脚本优先查找 `bsp/standalone_domain`，否则查找同级 `vehicle_system` 导出的 BSP；本源码包不包含该 BSP，需要另行提供。满足依赖后，在工程根目录打开 PowerShell：
 
 ```powershell
-.\verification\build_software.ps1 `
+.\build\build_software.ps1 `
   -ToolRoot 'D:\FPGA\2026.1' `
   -CameraControl 14 `
   -EnableObstacles `
@@ -81,14 +87,14 @@ DriveSense_Source_20261102/
   -PhotoSettleMs 4000
 ```
 
-脚本只编译应用，不连接或下载板卡。以上为基础综合固件构建，输出为 `firmware/release/vehicle_assist_lcd_english.elf`。网络综合版在同一命令追加 `-EnablePcNetwork -OutputName vehicle_assist_submission_pcnet.elf`；需额外具备工具链中的 lwIP 2.2 源码。R22 下载脚本所引用版本还启用了 ToF 软复位，可追加 `-EnableTofSoftReset`，应先验证供电与传感器状态。输出文件名本身不构成与历史 R22 二进制逐字节一致的保证。
+脚本只编译应用，不连接或下载板卡。以上为基础综合固件构建，输出为 `src/firmware/release/vehicle_assist_lcd_english.elf`。网络综合版在同一命令追加 `-EnablePcNetwork -OutputName vehicle_assist_submission_pcnet.elf`；需额外具备工具链中的 lwIP 2.2 源码。R22 下载脚本所引用版本还启用了 ToF 软复位，可追加 `-EnableTofSoftReset`，应先验证供电与传感器状态。输出文件名本身不构成与历史 R22 二进制逐字节一致的保证。
 
 ## 启动网页
 
 先确保同一串口没有被其他程序占用，然后运行：
 
 ```powershell
-python .\dashboard\server.py --http-port 8767
+python .\src\dashboard\server.py --http-port 8767
 ```
 
 打开：
@@ -101,22 +107,30 @@ python .\dashboard\server.py --http-port 8767
 
 ## 启动 PC 网口车辆识别
 
-先按 [PC 环境说明](pc_vision/README.md) 准备隔离 Python 环境、CUDA 依赖与 `models/yolov5su.pt`。权重不包含在源码包中。板卡默认地址为 `192.168.2.99`，电脑侧为 `192.168.2.1`，子网掩码为 `255.255.255.0`，UDP 端口分别为 50010 / 50011；与 `firmware/src/pc_net_config.h` 保持一致。
+先按 [PC 环境说明](src/pc_vision/README.md) 准备隔离 Python 环境、CUDA 依赖与 `models/yolov5su.pt`。权重不包含在源码包中。板卡默认地址为 `192.168.2.99`，电脑侧为 `192.168.2.1`，子网掩码为 `255.255.255.0`，UDP 端口分别为 50010 / 50011；与 `src/firmware/src/pc_net_config.h` 保持一致。
 
 ```powershell
-cd pc_vision
+cd src/pc_vision
 .\run_ethernet.ps1 -Board 192.168.2.99 -Bind 192.168.2.1
 ```
 
-脚本需要已运行匹配网络固件的板卡，不执行烧录或修改网卡配置。仅处理最新帧，使用会话、帧号、时间戳和 CRC 检查结果；关闭识别或断线时清除旧框。更多协议与参数见 [网口说明](pc_vision/README_ETHERNET.md)。该文件保留了开发阶段记录，最终快照的实际文件清单以本 README 为准。
+脚本需要已运行匹配网络固件的板卡，不执行烧录或修改网卡配置。仅处理最新帧，使用会话、帧号、时间戳和 CRC 检查结果；关闭识别或断线时清除旧框。更多协议与参数见 [网口说明](src/pc_vision/readme_ethernet.md)。该文件保留了开发阶段记录，最终快照的实际文件清单以本 README 为准。
+
+## 提交前目录检查
+
+```powershell
+python .\skill\check_submission.py .
+```
+
+检查名称规范、必要目录、Markdown 本地链接与 Python 语法，不连接板卡、不烧录。检查范围及失效条件见 [技能包说明](skill/README.md)。
 
 ## 复现验证
 
-- 板卡启动和双屏验证：`board_validation/r13_20261030/validation.md`
-- R14 固定摄像头跟踪记录：`board_validation/r14_tracking_20261030/validation.md`
-- R17 网络心跳修复说明：`docs/R17_修改说明_20261101.md`
-- 跟踪回归与稀疏 IoU 对比：`verification/vehicle_tracking_video_20261029/README.md`
-- 扩展屏英文界面说明：`docs/全英文扩展屏使用说明.md`
+- 板卡启动和双屏验证：`board/r13_20261030/validation.md`
+- R14 固定摄像头跟踪记录：`board/r14_tracking_20261030/validation.md`
+- R17 网络心跳修复说明：`report/r17_changes_20261101.md`
+- 跟踪回归与稀疏 IoU 对比：`sim/vehicle_tracking_video_20261029/README.md`
+- 扩展屏英文界面说明：`report/english_lcd_guide.md`
 
 宿主机回归脚本默认依赖 NumPy、Pillow、本机 ARM GCC 和 FFmpeg。换机复现时，请把脚本中的本地工具路径改为对应安装路径，并另行准备原始输入视频；本源码包不含原始视频及被忽略的构建输出。
 
@@ -126,13 +140,16 @@ cd pc_vision
 
 ## 源码、证据与第三方依赖
 
-- `board_validation/` 和 `verification/` 中的报告保留各次测试的原始日期与版本，不代表 R22 已重复完成全部历史测试。
-- `preview/english-ui-overview.png` 为离线 UI 预览，`preview/home-clock-board.png` 为已有板端截图，展示图应按各自来源使用。
-- 网页 Three.js 与车模型的来源见 [网页第三方说明](dashboard/drivesense/THIRD_PARTY.md)。PC 检测器、ByteTrack 和预训练模型的来源见 [PC 视觉说明](pc_vision/README.md)。引用资料与第三方依赖应遵循各自许可；本次没有新增覆盖全部代码的授权声明。
+- `board/` 和 `sim/` 中的报告保留各次测试的原始日期与版本，不代表 R22 已重复完成全部历史测试。
+- `data/preview/english-ui-overview.png` 为离线 UI 预览，`data/preview/home-clock-board.png` 为已有板端截图，展示图应按各自来源使用。
+- 网页 Three.js 与车模型的来源见 [网页第三方说明](src/dashboard/drivesense/third_party.md)。PC 检测器、ByteTrack 和预训练模型的来源见 [PC 视觉说明](src/pc_vision/README.md)。引用资料与第三方依赖应遵循各自许可；本次没有新增覆盖全部代码的授权声明。
 
 ## 版本记录
 
-- **OB02 / R22 / 2026-11-02 源码快照**：以用户最终压缩包为准，含 R18–R20 ToF 调整、R21 界面修改和 R22 声级曲线修改；相关下载/诊断入口保存在 `board_validation/`。脚本引用的二进制文件未包含在本源码包中。
+- **2026-11-03 目录规范化**：按竞赛推荐目录迁移并清理临时/未集成参考文件；算法源码保持，检查结果见 [目录整理验证](report/layout_validation_20261103.md)。
+
+
+- **OB02 / R22 / 2026-11-02 源码快照**：以用户最终压缩包为准，含 R18–R20 ToF 调整、R21 界面修改和 R22 声级曲线修改；相关下载/诊断入口保存在 `board/`。脚本引用的二进制文件未包含在本源码包中。
 
 - **R17 / 2026-11-01**：修复 PC 网络心跳时间戳下溢导致的会话失效和目标框被拒问题；协议格式保持不变。
 - **R16 / 2026-10-31**：综合固件与网络链路闭环验证材料。

@@ -12,13 +12,13 @@ __pycache__/
 node_modules/
 
 # ===== PC 视觉端：虚拟环境缓存、模型权重、运行产物 =====
-pc_vision/.cache/
-pc_vision/models/
-pc_vision/runs/
-pc_vision/ultralytics/
+src/pc_vision/.cache/
+src/pc_vision/models/
+src/pc_vision/runs/
+src/pc_vision/ultralytics/
 # 验证目录只保留说明文档（.md），其余为日志/可执行文件/仿真临时文件
-pc_vision/validation/*
-!pc_vision/validation/*.md
+src/pc_vision/validation/*
+!src/pc_vision/validation/*.md
 *.pt
 *.pth
 *.onnx
@@ -27,7 +27,9 @@ pc_vision/validation/*
 # ===== Xilinx / Vitis 构建产物 =====
 .Xil/
 .vitis/
-build/
+/build/artifacts/
+**/build/
+!/build/
 *.jou
 *.log
 *.str
@@ -52,8 +54,8 @@ build/
 *.exe
 
 # ===== 网页端临时目录 =====
-dashboard/.work/
-dashboard/.thumbnails/
+src/dashboard/.work/
+src/dashboard/.thumbnails/
 
 # ===== 媒体证据（体积大，另行存放）=====
 *.mp4

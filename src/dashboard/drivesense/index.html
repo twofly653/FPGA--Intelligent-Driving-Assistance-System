@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#081321">
+  <title>DriveSense — Vehicle Dynamics Demo</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="camera-view.css?v=R8CONTROL20261026">
+  <link rel="stylesheet" href="live-link.css">
+</head>
+<body>
+  <div class="page-glow" aria-hidden="true"></div>
+  <svg class="icon-sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="icon-vehicle" viewBox="0 0 24 24"><path d="M4 15.5 5.7 10a2 2 0 0 1 1.9-1.4h8.8a2 2 0 0 1 1.9 1.4l1.7 5.5M3 15.5h18v3H3zM6 18.5V20m12-1.5V20M7 12.6h10M6.5 15.6h.1m10.8 0h.1"/></symbol>
+    <symbol id="icon-camera" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="13" rx="2"/><circle cx="12" cy="12.5" r="3.5"/><path d="M7 6l1.2-2h7.6L17 6M4 9h2"/></symbol>
+    <symbol id="icon-sensors" viewBox="0 0 24 24"><path d="M4 17h3m3 0h10M4 7h10m3 0h3M7 14v6m10-16v6"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="7" r="2"/></symbol>
+    <symbol id="icon-roll" viewBox="0 0 24 24"><path d="M4.5 10A8 8 0 1 1 7 17.5M4.5 5.5V10H9"/></symbol>
+    <symbol id="icon-pitch" viewBox="0 0 24 24"><path d="M12 3v18M8.5 6.5 12 3l3.5 3.5M8.5 17.5 12 21l3.5-3.5M4 12h16"/></symbol>
+    <symbol id="icon-heading" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="m9.5 14.5 5-5-1.2 3.8zM12 2v2m0 16v2m10-10h-2M4 12H2"/></symbol>
+    <symbol id="icon-temp" viewBox="0 0 24 24"><path d="M10 14.2V5a2 2 0 0 1 4 0v9.2a4.5 4.5 0 1 1-4 0Z"/><path d="M12 8v9"/></symbol>
+    <symbol id="icon-humidity" viewBox="0 0 24 24"><path d="M12 3C9.5 7 5 11.1 5 15a7 7 0 0 0 14 0c0-3.9-4.5-8-7-12Z"/><path d="M9 16a3 3 0 0 0 3 3"/></symbol>
+    <symbol id="icon-pressure" viewBox="0 0 24 24"><path d="M5 17a8 8 0 1 1 14 0M7 20h10M12 13l4-4M7.5 13.5h.1m8.9 0h.1"/><circle cx="12" cy="13" r="1"/></symbol>
+    <symbol id="icon-light" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v3m0 14v3M2 12h3m14 0h3M4.9 4.9 7 7m10 10 2.1 2.1m0-14.2L17 7M7 17l-2.1 2.1"/></symbol>
+    <symbol id="icon-range" viewBox="0 0 24 24"><circle cx="4.5" cy="12" r="1.5"/><path d="M8.5 7a7 7 0 0 1 0 10m3-13a11 11 0 0 1 0 16m3-19a15 15 0 0 1 0 22"/></symbol>
+    <symbol id="icon-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="2"/><path d="M12 2v3m0 14v3M2 12h3m14 0h3"/></symbol>
+    <symbol id="icon-pause" viewBox="0 0 24 24"><path d="M8 5v14m8-14v14"/></symbol>
+    <symbol id="icon-play" viewBox="0 0 24 24"><path d="m8 5 11 7-11 7z"/></symbol>
+    <symbol id="icon-reset" viewBox="0 0 24 24"><path d="M4 11a8 8 0 1 1 2.4 6M4 5v6h6"/></symbol>
+    <symbol id="icon-arrow" viewBox="0 0 24 24"><path d="M5 18 18 5M9 5h9v9"/></symbol>
+  </svg>
+  <main class="app-shell">
+    <header class="topbar">
+      <div class="identity">
+        <div class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 44 44" fill="none">
+            <path d="M6 31 19 8h8l-7 13h18L25 36h-8l7-9H9" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+            <circle cx="35" cy="9" r="3" fill="currentColor"/>
+          </svg>
+        </div>
+        <div>
+          <div class="eyebrow">PYNQ-Z2 / SMART MOBILITY</div>
+          <h1>DriveSense <span>Studio</span></h1>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <div class="screen-clock"><span id="clock">--:--:--</span><small>LOCAL TIME</small></div>
+        <div class="source-pill"><span class="pulse-dot"></span> SIMULATION MODE</div>
+        <button class="icon-button" id="fullscreenBtn" type="button" title="Toggle full screen" aria-label="Toggle full screen">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M8 3H3v5M16 3h5v5M3 16v5h5M21 16v5h-5"/>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <section class="hardware-link" aria-label="Board telemetry connection">
+      <span id="linkStatus" role="status" aria-live="polite">等待板卡串口 · 摄像头仍为 DEMO</span>
+      <span id="linkMetrics">— Hz · — ms</span>
+      <div class="link-controls"><select id="linkPort" aria-label="Board COM port"></select><button id="linkRefresh" type="button">刷新端口</button><button id="linkConnect" type="button">连接板卡</button><button id="linkDisconnect" type="button">断开</button><button id="linkDemo" type="button">仅演示</button></div>
+    </section>
+
+    <div class="workspace-layout">
+      <nav class="side-nav" aria-label="Dashboard pages">
+        <span class="side-nav-label">WORKSPACES</span>
+        <button class="nav-item active" type="button" data-view="vehicle" aria-controls="view-vehicle" aria-current="page"><svg class="ui-icon"><use href="#icon-vehicle"/></svg><span>Dynamics</span><small>01</small></button>
+        <button class="nav-item" type="button" data-view="camera" aria-controls="view-camera"><svg class="ui-icon"><use href="#icon-camera"/></svg><span>Camera</span><small>02</small></button>
+        <button class="nav-item" type="button" data-view="sensors" aria-controls="view-sensors"><svg class="ui-icon"><use href="#icon-sensors"/></svg><span>Sensors</span><small>03</small></button>
+        <div class="side-nav-foot"><span class="side-nav-led"></span><strong>DESIGN PREVIEW</strong><small>Hardware link pending</small></div>
+      </nav>
+      <div class="workspace-content">
+      <section id="view-vehicle" class="view-panel" aria-labelledby="vehicleHeading">
+    <div class="section-heading">
+      <div>
+        <span class="section-index">01 / DYNAMICS</span>
+        <h2 id="vehicleHeading">Vehicle attitude</h2>
+      </div>
+      <p>Interactive HDMI dashboard concept <span class="sep">/</span> sensor feed simulated</p>
+    </div>
+
+    <section class="main-grid" aria-label="Vehicle dashboard">
+      <article class="vehicle-panel panel">
+        <div class="panel-header">
+          <div>
+            <span class="panel-kicker">ATTITUDE MODEL</span>
+            <h3>Motion in three axes</h3>
+          </div>
+          <div class="panel-status"><span class="tiny-dot"></span> TRACKING</div>
+        </div>
+        <div class="vehicle-stage" id="vehicleStage">
+          <div class="pose-invalid-note" id="poseInvalidNote">等待板卡姿态</div>
+          <canvas id="carCanvas" aria-label="Animated three-dimensional car attitude model"></canvas>
+          <canvas id="car3dCanvas" aria-label="Detailed three-dimensional car model"></canvas>
+          <div class="stage-corner stage-corner-left"><svg class="crosshair ui-icon"><use href="#icon-target"/></svg> VEHICLE FRAME <b>XYZ</b></div>
+          <div class="stage-corner stage-corner-right">MODEL <b>HIGH DETAIL 3D</b></div>
+          <div class="stage-bottom">
+            <div class="axis-legend"><i class="axis-x"></i> ROLL <i class="axis-y"></i> PITCH <i class="axis-z"></i> YAW</div>
+            <span>DRAG MODEL TO ADJUST <b>YAW / PITCH</b></span>
+          </div>
+        </div>
+        <div class="attitude-readouts">
+          <div class="attitude-item roll">
+            <svg class="metric-icon ui-icon"><use href="#icon-roll"/></svg>
+            <div><small>ROLL / LONGITUDINAL</small><strong id="rollReadout">+00.0°</strong><span class="rate-line">ANGULAR RATE <b id="rollRate">+0.0°/s</b></span></div>
+            <div class="mini-track"><span id="rollTrack"></span></div>
+          </div>
+          <div class="attitude-item pitch">
+            <svg class="metric-icon ui-icon"><use href="#icon-pitch"/></svg>
+            <div><small>PITCH / LATERAL</small><strong id="pitchReadout">+00.0°</strong><span class="rate-line">ANGULAR RATE <b id="pitchRate">+0.0°/s</b></span></div>
+            <div class="mini-track"><span id="pitchTrack"></span></div>
+          </div>
+          <div class="attitude-item yaw">
+            <svg class="metric-icon ui-icon"><use href="#icon-heading"/></svg>
+            <div><small>HEADING / VERTICAL</small><strong id="yawReadout">042°</strong><span class="rate-line">ANGULAR RATE <b id="yawRate">+0.0°/s</b></span></div>
+            <div class="mini-track"><span id="yawTrack"></span></div>
+          </div>
+        </div>
+      </article>
+
+      <aside class="right-stack">
+        <section class="compass-panel panel" aria-label="Compass">
+          <div class="panel-header compact">
+            <div>
+              <span class="panel-kicker">COMPASS / DEMO</span>
+              <h3>Compass</h3>
+            </div>
+            <span class="north-chip">HEADING UP</span>
+          </div>
+          <div class="compass-body">
+            <svg class="compass-dial" viewBox="0 0 240 240" role="img" aria-label="Simulated rotating compass rose">
+              <defs>
+                <radialGradient id="dialFill"><stop offset="0" stop-color="#183043"/><stop offset="1" stop-color="#0c1d2e"/></radialGradient>
+              </defs>
+              <circle cx="120" cy="120" r="109" fill="url(#dialFill)" stroke="#294458" stroke-width="1"/>
+              <circle cx="120" cy="120" r="88" fill="none" stroke="#264255" stroke-width="1" stroke-dasharray="2 8"/>
+              <g id="compassRose"></g>
+              <path d="M120 7 111 24h18Z" fill="#f7c977"/>
+              <circle cx="120" cy="120" r="4" fill="#66dce9"/>
+            </svg>
+            <div class="compass-center">
+              <small>SIM HEADING</small>
+              <strong id="headingReadout">042°</strong>
+              <span id="headingCardinal">NORTHEAST</span>
+            </div>
+          </div>
+          <div class="compass-footer"><span>MAGNETOMETER</span><b>Awaiting hardware link</b></div>
+          <details class="compass-calibration" id="compassCalibration">
+            <summary>磁指南针校准与对齐</summary>
+            <p id="compassMessage" role="status">等待板卡磁力计数据；车身相对 Yaw 不作为北向。</p>
+            <p class="cal-help">远离磁铁、金属、扬声器和大电流线。手机比对请选磁北，并与板卡保持距离。</p>
+            <ol>
+              <li>板卡平放，开始校准后缓慢转满两圈；完整覆盖且拟合合格后会自动完成并保留结果。</li>
+              <li>固定板卡的前向边，将它朝向手机所示方向，填入磁北角后设置参考。此步骤只校正安装方向。</li>
+              <li>板卡顺时针转 90°，读数应增加约 90°；若相反，翻转方向后重新设置参考。再核对至少三个方向。</li>
+            </ol>
+            <div class="cal-buttons"><button type="button" id="compassBegin">开始采集</button><button type="button" id="compassEnd">结束采集</button><button type="button" id="compassCancel">取消采集</button></div>
+            <div class="cal-reference"><label for="compassReference">手机磁北角 / °</label><input id="compassReference" type="number" min="0" max="359.9" step="0.1" value="0"><button type="button" id="compassAlign">设置参考方向</button></div>
+            <div class="cal-buttons"><button type="button" id="compassFlip">翻转转向</button><button type="button" id="compassConfirm">已核对多方向</button></div>
+            <p id="compassMetrics" class="cal-metrics">覆盖 — / 8 · 样本 —</p>
+            <p id="compassCommandStatus" role="status"></p>
+            <p class="cal-help">当前为平放二维磁指南针。倾斜、数据过期或未校准时不提供可信北向。板卡重启后请重新校准。</p>
+            <p class="cal-help">自检 PASS 只说明器件启动自检通过，磁北精度仍需完成磁校准并多方向比对。</p>
+          </details>
+        </section>
+
+        <div id="trafficSummaryRoot" class="panel traffic-summary-host"></div>
+      </aside>
+    </section>
+
+    <section class="control-panel panel" aria-label="Demo controls">
+      <div class="control-intro">
+        <span class="section-index">02 / CONTROL DESK</span>
+        <h3>Test the movement</h3>
+        <p>Move the sliders or drag the car view. All values shown here are simulated.</p>
+        <div class="control-buttons">
+          <button class="action-button primary" id="autoBtn" type="button"><svg class="ui-icon"><use id="autoIcon" href="#icon-pause"/></svg><span id="autoLabel">PAUSE DEMO</span></button>
+          <button class="action-button" id="resetBtn" type="button"><svg class="ui-icon"><use href="#icon-reset"/></svg>RESET POSE</button>
+        </div>
+      </div>
+      <div class="sliders">
+        <label class="slider-row"><span class="slider-label"><b>ROLL</b><output id="rollOutput">0.0°</output></span><input id="rollSlider" type="range" min="-45" max="45" step="0.5" value="0" aria-label="Roll angle"><span class="slider-extents">−45° <em>0°</em> +45°</span></label>
+        <label class="slider-row"><span class="slider-label"><b>PITCH</b><output id="pitchOutput">0.0°</output></span><input id="pitchSlider" type="range" min="-35" max="35" step="0.5" value="0" aria-label="Pitch angle"><span class="slider-extents">−35° <em>0°</em> +35°</span></label>
+        <label class="slider-row"><span class="slider-label"><b>YAW / HEADING</b><output id="yawOutput">42°</output></span><input id="yawSlider" type="range" min="0" max="359" step="1" value="42" aria-label="Yaw or heading"><span class="slider-extents">0° <em>180°</em> 359°</span></label>
+      </div>
+      <div class="presets">
+        <span>QUICK SCENES</span>
+        <button type="button" data-preset="level">LEVEL ROAD <svg class="ui-icon"><use href="#icon-arrow"/></svg></button>
+        <button type="button" data-preset="corner">SHARP TURN <svg class="ui-icon"><use href="#icon-arrow"/></svg></button>
+        <button type="button" data-preset="slope">STEEP SLOPE <svg class="ui-icon"><use href="#icon-arrow"/></svg></button>
+        <button type="button" data-preset="warning">CLOSE OBJECT <svg class="ui-icon"><use href="#icon-arrow"/></svg></button>
+      </div>
+    </section>
+
+      </section>
+
+      <section id="view-camera" class="view-panel" aria-label="Camera perception workspace" hidden>
+        <div id="cameraRoot"></div>
+      </section>
+
+      <section id="view-sensors" class="view-panel" aria-labelledby="sensorsHeading" hidden>
+        <div class="section-heading">
+          <div><span class="section-index">03 / TELEMETRY</span><h2 id="sensorsHeading">Sensor landscape</h2></div>
+          <p>Environmental signals <span class="sep">/</span> simulated values</p>
+        </div>
+        <div class="sensor-page-grid">
+          <section class="sensors-panel panel" aria-label="Sensor overview">
+            <div class="panel-header">
+              <div><span class="panel-kicker">ENVIRONMENT / DEMO</span><h3>Cabin & surroundings</h3></div>
+              <span class="data-chip">4 CHANNELS</span>
+            </div>
+            <div class="sensor-grid">
+              <div class="sensor-tile"><div class="sensor-top"><span>TEMPERATURE</span><svg class="sensor-symbol ui-icon"><use href="#icon-temp"/></svg></div><div class="sensor-value"><strong id="tempReadout">26.4</strong><small>°C</small></div><div class="sensor-foot">Cabin temperature</div></div>
+              <div class="sensor-tile"><div class="sensor-top"><span>HUMIDITY</span><svg class="sensor-symbol ui-icon"><use href="#icon-humidity"/></svg></div><div class="sensor-value"><strong id="humidityReadout">48</strong><small>%</small></div><div class="sensor-foot">Relative humidity</div></div>
+              <div class="sensor-tile"><div class="sensor-top"><span>PRESSURE</span><svg class="sensor-symbol ui-icon"><use href="#icon-pressure"/></svg></div><div class="sensor-value"><strong id="pressureReadout">1013</strong><small>hPa</small></div><div class="sensor-foot">Atmospheric pressure</div></div>
+              <div class="sensor-tile"><div class="sensor-top"><span>LIGHT LEVEL</span><svg class="sensor-symbol ui-icon"><use href="#icon-light"/></svg></div><div class="sensor-value"><strong id="lightReadout">460</strong><small>lx</small></div><div class="sensor-foot">Estimated illumination</div></div>
+            </div>
+            <div class="distance-row">
+              <svg class="distance-icon ui-icon"><use href="#icon-range"/></svg>
+              <div class="distance-caption"><span>FRONT DISTANCE / DEMO</span><strong id="distanceReadout">2.8 m</strong></div>
+              <div class="distance-state" id="distanceState">SAFE</div>
+            </div>
+          </section>
+          <section class="signal-panel panel" aria-label="Sensor channels">
+            <div class="panel-header"><div><span class="panel-kicker">SIGNAL MAP</span><h3>One vehicle, many signals</h3></div></div>
+            <p class="signal-intro">A calm view of the sensor channels. Live values will replace these simulated readings when the board data link is connected.</p>
+            <div class="signal-list">
+              <div><svg class="ui-icon"><use href="#icon-temp"/></svg><span><strong>Cabin climate</strong><small>Temperature and humidity</small></span><b>HDC1080</b></div>
+              <div><svg class="ui-icon"><use href="#icon-pressure"/></svg><span><strong>Air pressure</strong><small>Atmospheric trend</small></span><b>SPA06</b></div>
+              <div><svg class="ui-icon"><use href="#icon-light"/></svg><span><strong>Ambient light</strong><small>Estimated illumination</small></span><b>VEML3328</b></div>
+              <div><svg class="ui-icon"><use href="#icon-range"/></svg><span><strong>Front range</strong><small>Near-field distance</small></span><b>VL53L0X</b></div>
+            </div>
+            <div class="signal-note"><span class="tiny-dot"></span><span>SIMULATED INPUT</span><strong>No hardware telemetry is connected to this browser demo.</strong></div>
+          </section>
+        </div>
+      </section>
+      </div>
+    </div>
+
+    <footer class="footer"><span>DRIVESENSE / MULTIMODAL DASHBOARD CONCEPT</span><span>MODEL: ERIC CHADWICK / UNITY FAN · CC BY 4.0</span><span>v0.3 · SIMULATION</span></footer>
+  </main>
+  <script src="vendor/three.min.js"></script>
+  <script src="vendor/gltfloader.js"></script>
+  <script src="vendor/roomenvironment.js"></script>
+  <script src="car_model_data.js"></script>
+  <script src="attitude-adapter.js?v=R9"></script>
+  <script src="car3d-source.js"></script>
+  <script src="app.js?v=R9"></script>
+  <script src="traffic-view.js?v=R8CONTROL20261026"></script>
+  <script src="obstacle-view.js?v=R8CONTROL20261026"></script>
+  <script src="camera-view.js?v=R8CONTROL20261026"></script>
+  <script src="navigation.js"></script>
+  <script src="live-link.js?v=R8CONTROL20261026"></script>
+</body>
+</html>
