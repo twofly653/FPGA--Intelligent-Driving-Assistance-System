@@ -1,0 +1,48 @@
+{
+  "timestamp_local": "2026-10-30T11:45:16.685228+08:00",
+  "version": "CAMERA_SYNC_R14TRACK_20261030",
+  "programmed": true,
+  "elf": "D:\\project\\FPGA_PYNQ_Integrated\\lcd_english_20261028\\firmware\\release\\vehicle_assist_r14_tracking_candidate.elf",
+  "elf_sha256": "2e5c82e4e3beca92e1f63dece80d7e869842a43e9c32abf9e05aa853089c86f2",
+  "hardware": [
+    {
+      "path": "D:\\project\\deliveries\\Task3_Submission_20261026\\github\\PYNQ-Z2-Vehicle-Vision\\current_release\\vehicle_top.bit",
+      "sha256": "b299257575255eca61bcac24035681f6c24b8cb9b7d1185763b67d0bfeea2f6a"
+    },
+    {
+      "path": "D:\\project\\deliveries\\Task3_Submission_20261026\\github\\PYNQ-Z2-Vehicle-Vision\\current_release\\vehicle_top.xsa",
+      "sha256": "38c9bb094087400b124136f6fcc6f7467dfe923bb140bb0568a3a66e469cd3dd"
+    },
+    {
+      "path": "D:\\project\\deliveries\\Task3_Submission_20261026\\github\\PYNQ-Z2-Vehicle-Vision\\current_release\\ps7_init.tcl",
+      "sha256": "9456a2fd55902898a1af58e9a4ca73b72493bfb421edaefbb7ca90314593f934"
+    }
+  ],
+  "boot_banner_confirmed": true,
+  "lcd_home_initialized": true,
+  "lcd_physical_display_user_confirmation": "pending",
+  "tof_initialization_ready": true,
+  "tof_valid_target_distance_confirmation": "pending",
+  "dashboard": "http://127.0.0.1:8767/#camera",
+  "samples": 5,
+  "uart_connected_and_fresh": true,
+  "camera_live_and_configured": true,
+  "detection_enabled": true,
+  "detector_processing_ms": [
+    36,
+    36,
+    36,
+    36,
+    36
+  ],
+  "imu_ready": [
+    1,
+    1,
+    1,
+    1,
+    1
+  ],
+  "all_function_acceptance": "not performed; user requested visual tracking test",
+  "offline_release_manifest": "D:\\project\\FPGA_PYNQ_Integrated\\lcd_english_20261028\\verification\\tracking_r14_20261030\\release_manifest.json",
+  "formal_r13_elf_preserved": true
+}

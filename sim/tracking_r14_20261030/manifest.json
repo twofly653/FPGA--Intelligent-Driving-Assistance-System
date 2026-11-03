@@ -1,0 +1,354 @@
+{
+  "hardware_access": false,
+  "r13_exe_sha": "8d4d76c7a7ed1b762e9ca2fcad688feaff12596b0145cf5a42e557409211ba73",
+  "candidate_c_sha": "d9c3884ae5f4e405069678f4a3a416c9dbe9e8f88fa06f027fb3de0216a2d13b",
+  "candidate_h_sha": "36badda730d698f82d046d35dff4e0561599879f942cbe3982ab0a80ceda79a4",
+  "runs": [
+    {
+      "video": "bilibili",
+      "variant": "r13",
+      "fps": 5,
+      "frames": 103,
+      "area_halving_events": [
+        {
+          "time": 3.8,
+          "id": 4,
+          "old_area": 288,
+          "new_area": 120
+        },
+        {
+          "time": 4.8,
+          "id": 26,
+          "old_area": 420,
+          "new_area": 200
+        },
+        {
+          "time": 6.2,
+          "id": 34,
+          "old_area": 1088,
+          "new_area": 460
+        },
+        {
+          "time": 8.4,
+          "id": 39,
+          "old_area": 252,
+          "new_area": 120
+        },
+        {
+          "time": 9.0,
+          "id": 41,
+          "old_area": 1200,
+          "new_area": 588
+        },
+        {
+          "time": 11.2,
+          "id": 45,
+          "old_area": 396,
+          "new_area": 168
+        },
+        {
+          "time": 12.6,
+          "id": 57,
+          "old_area": 224,
+          "new_area": 100
+        },
+        {
+          "time": 15.6,
+          "id": 64,
+          "old_area": 704,
+          "new_area": 308
+        },
+        {
+          "time": 18.0,
+          "id": 59,
+          "old_area": 1656,
+          "new_area": 768
+        },
+        {
+          "time": 20.4,
+          "id": 79,
+          "old_area": 252,
+          "new_area": 120
+        }
+      ],
+      "frames_with_boxes": 98,
+      "unique_ids": 40,
+      "host_ms_per_frame": 1.4274912621137614,
+      "raw_sha": "2c6042119b146027ec59a80e10b55cc83945d014de014d186627f1bec539d1f8",
+      "meta_sha": "c5c9a5376ce676feed5ad54c5cfea70554cab5cb75085dacc15c9d2222fbf1ba"
+    },
+    {
+      "video": "bilibili",
+      "variant": "r14",
+      "fps": 5,
+      "frames": 103,
+      "area_halving_events": [],
+      "frames_with_boxes": 98,
+      "unique_ids": 40,
+      "host_ms_per_frame": 1.5167854368874296,
+      "raw_sha": "2c6042119b146027ec59a80e10b55cc83945d014de014d186627f1bec539d1f8",
+      "meta_sha": "c5c9a5376ce676feed5ad54c5cfea70554cab5cb75085dacc15c9d2222fbf1ba"
+    },
+    {
+      "video": "bilibili",
+      "variant": "r13",
+      "fps": 10,
+      "frames": 206,
+      "area_halving_events": [
+        {
+          "time": 2.6,
+          "id": 14,
+          "old_area": 528,
+          "new_area": 224
+        },
+        {
+          "time": 3.9,
+          "id": 6,
+          "old_area": 224,
+          "new_area": 100
+        },
+        {
+          "time": 5.6,
+          "id": 23,
+          "old_area": 576,
+          "new_area": 256
+        },
+        {
+          "time": 5.8,
+          "id": 18,
+          "old_area": 256,
+          "new_area": 100
+        },
+        {
+          "time": 8.9,
+          "id": 31,
+          "old_area": 780,
+          "new_area": 360
+        },
+        {
+          "time": 9.0,
+          "id": 36,
+          "old_area": 748,
+          "new_area": 308
+        },
+        {
+          "time": 9.3,
+          "id": 25,
+          "old_area": 400,
+          "new_area": 196
+        },
+        {
+          "time": 9.5,
+          "id": 28,
+          "old_area": 308,
+          "new_area": 140
+        },
+        {
+          "time": 10.5,
+          "id": 34,
+          "old_area": 960,
+          "new_area": 448
+        },
+        {
+          "time": 11.2,
+          "id": 37,
+          "old_area": 324,
+          "new_area": 144
+        },
+        {
+          "time": 12.0,
+          "id": 39,
+          "old_area": 224,
+          "new_area": 100
+        },
+        {
+          "time": 12.1,
+          "id": 37,
+          "old_area": 432,
+          "new_area": 192
+        },
+        {
+          "time": 12.6,
+          "id": 39,
+          "old_area": 256,
+          "new_area": 100
+        },
+        {
+          "time": 14.8,
+          "id": 44,
+          "old_area": 1092,
+          "new_area": 504
+        },
+        {
+          "time": 15.2,
+          "id": 44,
+          "old_area": 792,
+          "new_area": 336
+        },
+        {
+          "time": 17.3,
+          "id": 52,
+          "old_area": 224,
+          "new_area": 100
+        },
+        {
+          "time": 17.3,
+          "id": 47,
+          "old_area": 728,
+          "new_area": 324
+        },
+        {
+          "time": 18.2,
+          "id": 47,
+          "old_area": 256,
+          "new_area": 100
+        },
+        {
+          "time": 18.3,
+          "id": 52,
+          "old_area": 400,
+          "new_area": 196
+        },
+        {
+          "time": 18.7,
+          "id": 47,
+          "old_area": 256,
+          "new_area": 100
+        },
+        {
+          "time": 18.9,
+          "id": 52,
+          "old_area": 400,
+          "new_area": 196
+        },
+        {
+          "time": 20.4,
+          "id": 52,
+          "old_area": 256,
+          "new_area": 100
+        }
+      ],
+      "frames_with_boxes": 201,
+      "unique_ids": 39,
+      "host_ms_per_frame": 1.3844451456411528,
+      "raw_sha": "d9770a2b43ae517b5760c0cb1d20528fe66a92226fe550b0e63ad2e37eb87c0c",
+      "meta_sha": "0aedfc8030fac25831a9ff88cf6b83ff3a8235bfc9de511cbca274ff23b38049"
+    },
+    {
+      "video": "bilibili",
+      "variant": "r14",
+      "fps": 10,
+      "frames": 206,
+      "area_halving_events": [],
+      "frames_with_boxes": 201,
+      "unique_ids": 43,
+      "host_ms_per_frame": 1.3891932038797712,
+      "raw_sha": "d9770a2b43ae517b5760c0cb1d20528fe66a92226fe550b0e63ad2e37eb87c0c",
+      "meta_sha": "0aedfc8030fac25831a9ff88cf6b83ff3a8235bfc9de511cbca274ff23b38049"
+    },
+    {
+      "video": "supplied",
+      "variant": "r13",
+      "fps": 5,
+      "frames": 48,
+      "area_halving_events": [
+        {
+          "time": 10.7,
+          "id": 11,
+          "old_area": 2352,
+          "new_area": 1064
+        },
+        {
+          "time": 12.1,
+          "id": 15,
+          "old_area": 864,
+          "new_area": 384
+        }
+      ],
+      "frames_with_boxes": 34,
+      "unique_ids": 13,
+      "host_ms_per_frame": 1.5126729167604935,
+      "raw_sha": "9c11ea4ef46772bfa69be5ba014a154b036d86868644bb7fcf3954cd1d7aca2f",
+      "meta_sha": "66bc92732b640459fd76fed0b84ec1dfd80f9cf1e89f4ba15ee55294476950a1"
+    },
+    {
+      "video": "supplied",
+      "variant": "r14",
+      "fps": 5,
+      "frames": 48,
+      "area_halving_events": [],
+      "frames_with_boxes": 34,
+      "unique_ids": 14,
+      "host_ms_per_frame": 1.4865854165388253,
+      "raw_sha": "9c11ea4ef46772bfa69be5ba014a154b036d86868644bb7fcf3954cd1d7aca2f",
+      "meta_sha": "66bc92732b640459fd76fed0b84ec1dfd80f9cf1e89f4ba15ee55294476950a1"
+    },
+    {
+      "video": "supplied",
+      "variant": "r13",
+      "fps": 10,
+      "frames": 95,
+      "area_halving_events": [
+        {
+          "time": 8.6,
+          "id": 2,
+          "old_area": 1320,
+          "new_area": 600
+        },
+        {
+          "time": 9.6,
+          "id": 5,
+          "old_area": 640,
+          "new_area": 308
+        },
+        {
+          "time": 10.4,
+          "id": 8,
+          "old_area": 384,
+          "new_area": 160
+        },
+        {
+          "time": 11.7,
+          "id": 9,
+          "old_area": 256,
+          "new_area": 100
+        },
+        {
+          "time": 12.2,
+          "id": 9,
+          "old_area": 256,
+          "new_area": 100
+        },
+        {
+          "time": 12.9,
+          "id": 5,
+          "old_area": 384,
+          "new_area": 160
+        },
+        {
+          "time": 14.7,
+          "id": 14,
+          "old_area": 2392,
+          "new_area": 1152
+        }
+      ],
+      "frames_with_boxes": 71,
+      "unique_ids": 13,
+      "host_ms_per_frame": 1.4406157894930067,
+      "raw_sha": "59a94363ad009f09c7c952be4a6ee55d78b644cafa483bae02b8e0063f41f571",
+      "meta_sha": "521d06d6f3d9e7bab3483c08dacdfbb0281749fc7ff4f53b825913ef04d8be7c"
+    },
+    {
+      "video": "supplied",
+      "variant": "r14",
+      "fps": 10,
+      "frames": 95,
+      "area_halving_events": [],
+      "frames_with_boxes": 71,
+      "unique_ids": 13,
+      "host_ms_per_frame": 1.4433589473666966,
+      "raw_sha": "59a94363ad009f09c7c952be4a6ee55d78b644cafa483bae02b8e0063f41f571",
+      "meta_sha": "521d06d6f3d9e7bab3483c08dacdfbb0281749fc7ff4f53b825913ef04d8be7c"
+    }
+  ]
+}

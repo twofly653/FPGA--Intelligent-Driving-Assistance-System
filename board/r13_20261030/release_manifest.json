@@ -1,0 +1,141 @@
+{
+  "version": "CAMERA_SYNC_R13TRACK_20261030",
+  "recorded_utc": "2026-10-30T01:31:14.407796+00:00",
+  "programmed": true,
+  "user_authorization": "我已经插上板卡，烧录",
+  "user_visual_confirmation": "HDMI 有实时图像，扩展屏正常",
+  "system_settings_modified": false,
+  "project_copy_created": false,
+  "camera_wiring_changed": false,
+  "hardware_bundle_hashes_verified": true,
+  "files": [
+    {
+      "path": "D:\\project\\FPGA_PYNQ_Integrated\\lcd_english_20261028\\firmware\\release\\vehicle_assist_lcd_english.elf",
+      "bytes": 1147852,
+      "sha256": "f308da03d9d0feb7bed1c9057f4ef974b6378c597a6e930d929b3cbef594d36e"
+    },
+    {
+      "path": "D:\\project\\FPGA_PYNQ_Integrated\\lcd_english_20261028\\firmware\\src\\main.c",
+      "bytes": 8854,
+      "sha256": "103cc531def42394c51e08566f90bd8578096ad7088294df9892873d120ef72d"
+    },
+    {
+      "path": "D:\\project\\FPGA_PYNQ_Integrated\\lcd_english_20261028\\firmware\\src\\obstacle_motion_core.c",
+      "bytes": 38469,
+      "sha256": "22703779070ab92bafdec7871c20c735594fac95b7311dc44b1df0e718e784bd"
+    },
+    {
+      "path": "D:\\project\\FPGA_PYNQ_Integrated\\lcd_english_20261028\\firmware\\src\\obstacle_motion_core.h",
+      "bytes": 5417,
+      "sha256": "8f438d7ed8e8cd0fb3cc8d6dea12ef98c7d8a51db7cecb9a23ea389f4547d388"
+    },
+    {
+      "path": "D:\\project\\deliveries\\Task3_Submission_20261026\\github\\PYNQ-Z2-Vehicle-Vision\\current_release\\vehicle_top.bit",
+      "bytes": 4045766,
+      "sha256": "b299257575255eca61bcac24035681f6c24b8cb9b7d1185763b67d0bfeea2f6a"
+    },
+    {
+      "path": "D:\\project\\deliveries\\Task3_Submission_20261026\\github\\PYNQ-Z2-Vehicle-Vision\\current_release\\vehicle_top.xsa",
+      "bytes": 1027399,
+      "sha256": "38c9bb094087400b124136f6fcc6f7467dfe923bb140bb0568a3a66e469cd3dd"
+    },
+    {
+      "path": "D:\\project\\deliveries\\Task3_Submission_20261026\\github\\PYNQ-Z2-Vehicle-Vision\\current_release\\ps7_init.tcl",
+      "bytes": 36596,
+      "sha256": "9456a2fd55902898a1af58e9a4ca73b72493bfb421edaefbb7ca90314593f934"
+    }
+  ],
+  "evidence": [
+    {
+      "file": "download.log",
+      "sha256": "5a4daf9e360456e8f6c53ae67642f5efe5e915aeeb058a1d195b7d8e2cbfa65c"
+    },
+    {
+      "file": "startup_uart.log",
+      "sha256": "3f4dc36864fa5ce2bf2d6ef323baedcc9cf8cde7afee4ecee30dfcda4ed36fec"
+    },
+    {
+      "file": "modes.log",
+      "sha256": "02414ad5188a659ff01b13f2194d991af1849c015ad58ea60fcb672bdbdd1bee"
+    },
+    {
+      "file": "runtime_initial.log",
+      "sha256": "cca74653befa744df63625f8dd218f2368b808437bfe232b0ed739e25b8d8a00"
+    },
+    {
+      "file": "runtime_after_web.log",
+      "sha256": "57278b3bdcce50e3bdb58f9c4bd170fac5257e82b1d4c17a8a605b73253e83ad"
+    },
+    {
+      "file": "runtime_uart.log",
+      "sha256": "4ed286ed0b1570c7d9fbb31f68ac00c1032c76f7f4a57121d29d4027fa7fd368"
+    },
+    {
+      "file": "web_checks.json",
+      "sha256": "0af53daa185ca7872a02ef2231dffabafa0fe08ea406ad157f9593b1b0c25314"
+    },
+    {
+      "file": "web_samples.json",
+      "sha256": "5ab255e8739f587f6e381f65f6857a29e20392590fe61fc5173805561a04527d"
+    },
+    {
+      "file": "final_status.json",
+      "sha256": "546c913a1452434bd596761e698a4c719cf122a51a1cd0aa53271525307abbe3"
+    },
+    {
+      "file": "validation.md",
+      "sha256": "cf2dd8eb8d429aa651cc255acd54f6d4daf8731a2d1e01eb264cc37748640d56"
+    }
+  ],
+  "video_tracking_accuracy_hardware_verified": false,
+  "video_comparison_full_decode_exit_code": 0,
+  "web_checks": {
+    "source": "LIVE_COM10_R13",
+    "off_ack": {
+      "kind": "DETECT",
+      "sequence": 314,
+      "enabled": 0,
+      "supported": true,
+      "stale": false,
+      "age_ms": 0.0,
+      "source": "BOARD_UART",
+      "can_control": true
+    },
+    "off_boxes_cleared": true,
+    "on_ack": {
+      "kind": "DETECT",
+      "sequence": 315,
+      "enabled": 1,
+      "supported": true,
+      "stale": false,
+      "age_ms": 0.0,
+      "source": "BOARD_UART",
+      "can_control": true
+    },
+    "samples": 56,
+    "connected_samples": 56,
+    "fresh_camera_samples": 56,
+    "camera_live_samples": 56,
+    "fresh_detection_samples": 56,
+    "fresh_obstacle_samples": 48,
+    "unique_obstacle_results": 50,
+    "camera_sequences": [
+      764,
+      821
+    ],
+    "obstacle_processing_ms": [
+      11,
+      35,
+      36,
+      37,
+      41,
+      44
+    ],
+    "imu_valid_samples": 56,
+    "range_states": [
+      "NO DATA",
+      "WARNING"
+    ],
+    "final_detection_enabled": 1
+  }
+}

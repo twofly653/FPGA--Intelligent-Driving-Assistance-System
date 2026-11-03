@@ -1,0 +1,279 @@
+{
+  "phases": [
+    {
+      "phase": "arming",
+      "elapsed_ms": 0
+    },
+    {
+      "phase": "capturing",
+      "elapsed_ms": 328
+    },
+    {
+      "phase": "transferring",
+      "elapsed_ms": 5937
+    },
+    {
+      "phase": "verifying",
+      "elapsed_ms": 11203
+    },
+    {
+      "phase": "ready",
+      "elapsed_ms": 11515
+    }
+  ],
+  "before": {
+    "roll": -0.3,
+    "pitch": 1.3,
+    "yaw": 4,
+    "rr": 0.1,
+    "pr": 0.0,
+    "yr": 0.0,
+    "temp": 24.0,
+    "rh": 40.4,
+    "hpa": 1004,
+    "lux": 71,
+    "range_mm": -1,
+    "level": 0,
+    "imu": 1,
+    "mag": 0,
+    "range_state": "NO DATA",
+    "heading_mode": "REL",
+    "seq": 173931,
+    "video_epoch": 5,
+    "port": "COM10",
+    "connected": true,
+    "error": "",
+    "mode": "LIVE",
+    "stale": false,
+    "age_ms": 32.0,
+    "rx_hz": 21.2,
+    "compass": {
+      "kind": "CMP",
+      "heading_x10": 0,
+      "valid": 0,
+      "detected": 1,
+      "fresh": 1,
+      "calibrated": 0,
+      "aligned": 0,
+      "collecting": 0,
+      "level": 1,
+      "span_x": 0,
+      "span_y": 0,
+      "coverage": 0,
+      "samples": 0,
+      "raw_x": -238,
+      "raw_y": 239,
+      "raw_z": -399,
+      "reference_x10": 0,
+      "direction": -1,
+      "direction_verified": 0,
+      "fit_error_ppm": 0,
+      "tilt_deg10": 13,
+      "selftest_result": 1,
+      "selftest_status": 81,
+      "stale": false,
+      "age_ms": 0.0
+    },
+    "traffic": {
+      "kind": "TRAFFIC",
+      "frame_seq": 1020,
+      "color": 0,
+      "valid": 0,
+      "confidence": 0,
+      "countdown": -1,
+      "digit_valid": 0,
+      "age_ms": 213.0,
+      "proc_ms": 3,
+      "stale": false,
+      "source": "BOARD_UART"
+    },
+    "camera": {
+      "kind": "CAMERA",
+      "sequence": 996,
+      "image_mode": 0,
+      "live": 1,
+      "configured": 1,
+      "width": 640,
+      "height": 480,
+      "stale": false,
+      "age_ms": 32.0,
+      "source": "BOARD_UART"
+    },
+    "detection": {
+      "kind": "DETECT",
+      "sequence": 407,
+      "enabled": 1,
+      "supported": true,
+      "stale": false,
+      "age_ms": 407.0,
+      "source": "BOARD_UART",
+      "can_control": true
+    },
+    "obstacles": {
+      "kind": "OBSTACLE",
+      "result_seq": 1072,
+      "source_frame": 1020,
+      "state": 0,
+      "available": 1,
+      "age_ms": 216.0,
+      "proc_ms": 22,
+      "count": 1,
+      "boxes": [
+        {
+          "id": 166,
+          "xmin": 412,
+          "ymin": 392,
+          "xmax": 435,
+          "ymax": 411
+        }
+      ],
+      "stale": false,
+      "valid": true,
+      "source": "BOARD_UART"
+    }
+  },
+  "start": {
+    "phase": "arming",
+    "busy": true,
+    "job_id": "c32e35249b3a4b18aec2498350290e8a",
+    "message": "\u6b63\u5728\u67e5\u8be2\u677f\u5361\u7167\u7247\u72b6\u6001"
+  },
+  "result": {
+    "phase": "ready",
+    "busy": false,
+    "job_id": "c32e35249b3a4b18aec2498350290e8a",
+    "message": "\u539f\u751f 500 \u4e07\u50cf\u7d20\u7167\u7247\u5df2\u6821\u9a8c",
+    "photo": {
+      "id": "1-c32e35249b3a",
+      "board_id": 1,
+      "width": 2592,
+      "height": 1944,
+      "size": 119686,
+      "crc32": "e415588f",
+      "verified": true,
+      "verified_at_ms": 1793273042855,
+      "url": "/photos/1-c32e35249b3a.jpg",
+      "filename": "OV5640_2592x1944_1-c32e35249b3a.jpg"
+    }
+  },
+  "photo": {
+    "path": "D:\\project\\FPGA_PYNQ_Integrated\\lcd_english_20261028\\board_validation\\run_all_20261029_192013\\validation_2592x1944.jpg",
+    "width": 2592,
+    "height": 1944,
+    "bytes": 119686,
+    "sha256": "1624384dc4a830ff8edf48abe411d8022a722765135e87ff751564c4b46a41fd"
+  },
+  "after": {
+    "roll": -0.2,
+    "pitch": 1.3,
+    "yaw": 0,
+    "rr": 0.1,
+    "pr": -0.1,
+    "yr": 0.0,
+    "temp": 24.1,
+    "rh": 40.9,
+    "hpa": 1004,
+    "lux": 79,
+    "range_mm": 64,
+    "level": 3,
+    "imu": 1,
+    "mag": 0,
+    "range_state": "DANGER",
+    "heading_mode": "REL",
+    "seq": 174209,
+    "video_epoch": 5,
+    "port": "COM10",
+    "connected": true,
+    "error": "",
+    "mode": "LIVE",
+    "stale": false,
+    "age_ms": 15.0,
+    "rx_hz": 21.3,
+    "compass": {
+      "kind": "CMP",
+      "heading_x10": 0,
+      "valid": 0,
+      "detected": 1,
+      "fresh": 1,
+      "calibrated": 0,
+      "aligned": 0,
+      "collecting": 0,
+      "level": 1,
+      "span_x": 0,
+      "span_y": 0,
+      "coverage": 0,
+      "samples": 0,
+      "raw_x": -235,
+      "raw_y": 234,
+      "raw_z": -401,
+      "reference_x10": 0,
+      "direction": -1,
+      "direction_verified": 0,
+      "fit_error_ppm": 0,
+      "tilt_deg10": 13,
+      "selftest_result": 1,
+      "selftest_status": 81,
+      "stale": false,
+      "age_ms": 15.0
+    },
+    "traffic": {
+      "kind": "TRAFFIC",
+      "frame_seq": 1049,
+      "color": 0,
+      "valid": 0,
+      "confidence": 0,
+      "countdown": -1,
+      "digit_valid": 0,
+      "age_ms": 383.0,
+      "proc_ms": 10,
+      "stale": false,
+      "source": "BOARD_UART"
+    },
+    "camera": {
+      "kind": "CAMERA",
+      "sequence": 1024,
+      "image_mode": 0,
+      "live": 1,
+      "configured": 1,
+      "width": 640,
+      "height": 480,
+      "stale": false,
+      "age_ms": 125.0,
+      "source": "BOARD_UART"
+    },
+    "detection": {
+      "kind": "DETECT",
+      "sequence": 419,
+      "enabled": 1,
+      "supported": true,
+      "stale": false,
+      "age_ms": 297.0,
+      "source": "BOARD_UART",
+      "can_control": true
+    },
+    "obstacles": {
+      "kind": "OBSTACLE",
+      "result_seq": 1101,
+      "source_frame": 1049,
+      "state": 0,
+      "available": 1,
+      "age_ms": 377.0,
+      "proc_ms": 22,
+      "count": 1,
+      "boxes": [
+        {
+          "id": 29,
+          "xmin": 356,
+          "ymin": 204,
+          "xmax": 407,
+          "ymax": 251
+        }
+      ],
+      "stale": false,
+      "valid": true,
+      "source": "BOARD_UART"
+    }
+  },
+  "passed": true,
+  "elapsed_ms": 11593
+}

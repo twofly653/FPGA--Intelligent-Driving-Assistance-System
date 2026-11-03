@@ -1,0 +1,139 @@
+{
+  "elf": "D:\\project\\FPGA_PYNQ_Integrated\\lcd_english_20261028\\firmware\\release\\vehicle_assist_lcd_english.elf",
+  "elf_sha256": "f308da03d9d0feb7bed1c9057f4ef974b6378c597a6e930d929b3cbef594d36e",
+  "elf_bytes": 1147852,
+  "generated_utc": "2026-10-30T01:26:07.750741+00:00",
+  "hardware_contacted_by_generator": false,
+  "runtime_read_bytes_max": 104,
+  "framebuffer_read": false,
+  "symbols": {
+    "collision_ready": {
+      "file": "collision_service.c",
+      "name": "g_ready",
+      "address": 3540028,
+      "address_hex": "0x0036043C",
+      "size": 4,
+      "section": ".bss"
+    },
+    "collision_state": {
+      "file": "collision_service.c",
+      "name": "g_state",
+      "address": 3540032,
+      "address_hex": "0x00360440",
+      "size": 12,
+      "section": ".bss"
+    },
+    "tof_sensor": {
+      "file": "vl53l0x.c",
+      "name": "g_sensor",
+      "address": 4819172,
+      "address_hex": "0x004988E4",
+      "size": 352,
+      "section": ".bss"
+    },
+    "tof_init_diagnostic": {
+      "file": "vl53l0x.c",
+      "name": "g_init_diag",
+      "address": 4819140,
+      "address_hex": "0x004988C4",
+      "size": 28,
+      "section": ".bss"
+    },
+    "tof_running": {
+      "file": "vl53l0x.c",
+      "name": "g_running",
+      "address": 4819168,
+      "address_hex": "0x004988E0",
+      "size": 4,
+      "section": ".bss"
+    },
+    "tof_io_error": {
+      "file": "vl53l0x_platform.c",
+      "name": "g_io_error",
+      "address": 4819136,
+      "address_hex": "0x004988C0",
+      "size": 4,
+      "section": ".bss"
+    },
+    "clock_valid": {
+      "file": "ui_clock.c",
+      "name": "g_valid",
+      "address": 4818816,
+      "address_hex": "0x00498780",
+      "size": 4,
+      "section": ".bss"
+    },
+    "home_clock_text": {
+      "file": "ui_home.c",
+      "name": "g_last_clock",
+      "address": 4818908,
+      "address_hex": "0x004987DC",
+      "size": 16,
+      "section": ".bss"
+    },
+    "ui_page": {
+      "file": "ui_settings.c",
+      "name": "g_page",
+      "address": 4819132,
+      "address_hex": "0x004988BC",
+      "size": 1,
+      "section": ".bss"
+    },
+    "small_font_pixels": {
+      "file": "ui_draw.c",
+      "name": "ui_font_pixels_0",
+      "address": 1399444,
+      "address_hex": "0x00155A94",
+      "size": 7860,
+      "section": ".rodata"
+    },
+    "small_font_width": {
+      "file": "ui_draw.c",
+      "name": "ui_font_width_0",
+      "address": 1407304,
+      "address_hex": "0x00157948",
+      "size": 95,
+      "section": ".rodata"
+    },
+    "small_font_offset": {
+      "file": "ui_draw.c",
+      "name": "ui_font_offset_0",
+      "address": 1407400,
+      "address_hex": "0x001579A8",
+      "size": 380,
+      "section": ".rodata"
+    }
+  },
+  "tof_cached_fields": {
+    "range_status": {
+      "offset": 104,
+      "mask": 255,
+      "address": 4819276,
+      "address_hex": "0x0049894C"
+    },
+    "range_mm": {
+      "offset": 88,
+      "mask": 65535,
+      "address": 4819260,
+      "address_hex": "0x0049893C"
+    },
+    "signal_16_16": {
+      "offset": 92,
+      "mask": 4294967295,
+      "address": 4819264,
+      "address_hex": "0x00498940"
+    },
+    "ambient_16_16": {
+      "offset": 96,
+      "mask": 4294967295,
+      "address": 4819268,
+      "address_hex": "0x00498944"
+    }
+  },
+  "tof_field_abi_note": "Offsets in current VL53L0X_Dev_t; revalidate if ST API struct layout changes.",
+  "hardware_registers": {
+    "camera_control": "0x40000078",
+    "camera_identity_mode": "0x4000005C",
+    "lcd_tx_status": "0x40000050"
+  }
+}

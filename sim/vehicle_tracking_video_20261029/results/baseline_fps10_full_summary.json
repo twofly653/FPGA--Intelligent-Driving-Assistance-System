@@ -1,0 +1,17 @@
+{
+  "variant": "baseline",
+  "fps": 10,
+  "clip": "full",
+  "frames": 247,
+  "status_histogram": {
+    "1": 3,
+    "0": 244
+  },
+  "frames_with_boxes": 182,
+  "total_boxes": 627,
+  "max_boxes": 7,
+  "unique_output_ids": 24,
+  "host_wall_seconds": 0.3803920999998809,
+  "host_wall_ms_per_frame": 1.5400489878537689,
+  "caveat": "No GT: counts are not accuracy or ID-switch measurements. Host wall includes IO/JSON, not ARM or end-to-end latency. Only stable clip is used for primary comparison; full/late UI contain controls, pause and scaling changes."
+}

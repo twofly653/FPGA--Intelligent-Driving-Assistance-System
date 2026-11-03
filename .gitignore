@@ -16,6 +16,9 @@ src/pc_vision/.cache/
 src/pc_vision/models/
 src/pc_vision/runs/
 src/pc_vision/ultralytics/
+# 验证目录只保留说明文档（.md），其余为日志/可执行文件/仿真临时文件
+src/pc_vision/validation/*
+!src/pc_vision/validation/*.md
 *.pt
 *.pth
 *.onnx

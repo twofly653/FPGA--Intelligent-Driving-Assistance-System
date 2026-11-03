@@ -1,0 +1,49 @@
+{
+  "source": "LIVE_COM10_R13",
+  "off_ack": {
+    "kind": "DETECT",
+    "sequence": 314,
+    "enabled": 0,
+    "supported": true,
+    "stale": false,
+    "age_ms": 0.0,
+    "source": "BOARD_UART",
+    "can_control": true
+  },
+  "off_boxes_cleared": true,
+  "on_ack": {
+    "kind": "DETECT",
+    "sequence": 315,
+    "enabled": 1,
+    "supported": true,
+    "stale": false,
+    "age_ms": 0.0,
+    "source": "BOARD_UART",
+    "can_control": true
+  },
+  "samples": 56,
+  "connected_samples": 56,
+  "fresh_camera_samples": 56,
+  "camera_live_samples": 56,
+  "fresh_detection_samples": 56,
+  "fresh_obstacle_samples": 48,
+  "unique_obstacle_results": 50,
+  "camera_sequences": [
+    764,
+    821
+  ],
+  "obstacle_processing_ms": [
+    11,
+    35,
+    36,
+    37,
+    41,
+    44
+  ],
+  "imu_valid_samples": 56,
+  "range_states": [
+    "NO DATA",
+    "WARNING"
+  ],
+  "final_detection_enabled": 1
+}

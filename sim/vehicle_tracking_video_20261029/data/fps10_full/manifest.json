@@ -1,0 +1,11 @@
+{
+  "fps": 10,
+  "start_s": 0.0,
+  "end_s": null,
+  "frames": 247,
+  "filter": "trim=start=0.0,setpts=PTS-STARTPTS,fps=fps=10:start_time=0:round=near,scale=320:146:flags=area,pad=320:240:0:47:black",
+  "source_sha256": "5a66062f1f4bd570cacad68bc8d9421b9f0dd9c93f8ab7cc395c2e7a69a46fdb",
+  "raw_sha256": "68b471cb95fd9425e4345252c9f80e5ecab491afa9f042af700b612788330b13",
+  "meta_sha256": "bb8d884f7dfd27b28a1afabdce0ace2885074ca3c7b1795b397b6a08867cf9ee",
+  "time_contract": "Resampled output PTS on source clock. Near rounding may select neighbouring original 22fps frame."
+}
